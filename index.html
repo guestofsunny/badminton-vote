@@ -686,15 +686,21 @@
     { title: '北京工人体育馆', address: '北京市朝阳区三里屯工人体育场北路', lat: 39.93090, lng: 116.45340 }
   ];
   function localSearch(kw) {
-    var lower = kw.toLowerCase();
+    var lower = kw.toLowerCase().replace(/\s+/g, '');
+    var alias = { '羽毛球馆': '体育馆', '羽毛球': '体育馆', '球馆': '体育馆', '学校': '大学', '校园': '大学', '球场': '体育馆' };
+    var target = alias[lower] || lower;
     return BEIJING_VENUES.filter(function (v) {
-      return (v.title + v.address).toLowerCase().indexOf(lower) !== -1;
+      var text = (v.title + v.address).toLowerCase();
+      return text.indexOf(lower) !== -1 || text.indexOf(target) !== -1;
     }).map(function (v) { return { title: v.title, address: v.address, lat: v.lat, lng: v.lng }; });
   }
-  function showSearchResults(items, isLocal) {
+  function showSearchResults(items, isLocal, reason) {
     var box = $('#searchResults'); box.replaceChildren();
     if (!items || !items.length) { box.hidden = true; toast('没有找到相关地点，可试试「体育馆」或手动输入坐标'); return; }
-    if (isLocal) box.append(el('div', 'search__addr', '北京常用地点（离线结果，坐标为近似值，请到场前核实）'));
+    if (isLocal) {
+      box.append(el('div', 'search__addr', '内置常用地点（坐标为近似值，请到场前核实）。要搜索全国实时地点，需在腾讯地图控制台给该 Key 勾选 WebService API 权限，并把域名白名单设为 guestofsunny.github.io'));
+      if (reason) box.append(el('div', 'search__addr', '诊断信息：' + reason + '（把这行截图发给管理员可精准定位）'));
+    }
     items.forEach(function (it) {
       var b = el('button'); b.type = 'button';
       var lat = typeof it.lat === 'number' ? it.lat : it.location.getLat();
@@ -716,14 +722,14 @@
   function searchPlace() {
     var kw = $('#placeSearch').value.trim();
     if (!kw) { toast('请输入搜索关键词'); return; }
-    if (!suggestion) { showSearchResults(localSearch(kw), true); return; }
+    if (!suggestion) { showSearchResults(localSearch(kw), true, '地图服务未加载或 Key 未生效'); return; }
     suggestion.getSuggestions({ keyword: kw, location: map ? map.getCenter() : new TMap.LatLng(BEIJING.lat, BEIJING.lng) })
       .then(function (res) {
         var data = res.status === 0 ? res.data : [];
         if (data && data.length) showSearchResults(data, false);
-        else showSearchResults(localSearch(kw), true);
+        else showSearchResults(localSearch(kw), true, '在线搜索返回状态 ' + res.status + '，通常为 Key 缺少 WebService API 权限或域名白名单不匹配');
       })
-      .catch(function () { showSearchResults(localSearch(kw), true); });
+      .catch(function (e) { showSearchResults(localSearch(kw), true, '在线搜索请求失败：' + (e && e.message ? e.message : '网络或被拒绝')); });
   }
   var editingVenueId = null;
   function fillVenueForm(v) {
