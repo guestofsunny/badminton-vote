@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page-node-id="Oik84EJzJALKYTYyG8gNh0">
-<head data-page-node-id="PDneGAMkMbPHx9twfsNJky">
-<meta charset="utf-8" data-page-node-id="NGIYBe24k9dL4evnHBC0Ey">
-<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="zRb47cwVPAAXkTzUmramwR">
-<meta name="color-scheme" content="light" data-page-node-id="9lsOPGPUVFd3qpwYGMTDNX">
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>约球投票 · 未来 7 天</title>
 <style>
   :root{
@@ -38,14 +38,11 @@
   .me-card{margin-top:var(--space-5);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);padding:var(--space-3)}
   .me-card__left{display:flex;align-items:center;gap:var(--space-3);min-width:0}
   .me-card__label{font-size:var(--fs-xs);color:var(--c-neutral-500)}
-  .me-name{display:inline-flex;align-items:center;gap:var(--space-1);background:none;border:0;padding:0;font-weight:700;font-size:var(--fs-md);color:var(--c-primary-700);text-align:left}
-  .me-name:hover{text-decoration:underline}
+  .me-name{font-weight:700;font-size:var(--fs-md);color:var(--c-primary-700)}
   .me-card__hint{font-size:var(--fs-xs);color:var(--c-neutral-500)}
-  .avatar{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;font-size:14px;font-weight:700;line-height:1;background:#dbeafe;color:#1e40af;flex:none;width:28px;height:28px;overflow:hidden}
-  .avatar--lg{width:48px;height:48px;font-size:22px;border:2px solid var(--c-primary-100)}
-  .avatar--sm{width:20px;height:20px;font-size:11px}
-  .avatar--img{object-fit:cover;background:#dbeafe}
-  .avatar-button{background:none;border:0;padding:0;border-radius:50%;flex:none;width:48px;height:48px;min-height:0;display:inline-flex;align-items:center;justify-content:center}
+  .avatar{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;font-size:13px;font-weight:700;line-height:1;flex:none;width:28px;height:28px;overflow:hidden}
+  .avatar--lg{width:48px;height:48px;font-size:20px;border:2px solid var(--c-primary-100)}
+  .avatar--sm{width:20px;height:20px;font-size:10px}
 
   .btn{min-height:44px;padding:var(--space-2) var(--space-5);border:1px solid transparent;border-radius:var(--radius-sm);font-weight:600;background:var(--c-primary-600);color:#fff;transition:transform .2s ease,background-color .2s ease,opacity .2s ease}
   .btn:hover{background:var(--c-primary-700);transform:scale(1.02)}
@@ -78,9 +75,9 @@
   .day-card[aria-pressed="true"] .badge--state{background:var(--c-success-bg);color:var(--c-success)}
   .voters{display:flex;flex-wrap:wrap;gap:var(--space-1);flex:1;align-content:flex-start}
   .chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;background:var(--c-neutral-100);color:var(--c-neutral-700);border:0;border-radius:var(--radius-pill);padding:2px var(--space-2) 2px 2px;font-size:var(--fs-xs);line-height:1.6}
-  .chip:hover{background:#fee2e2;color:var(--c-danger)}
+  .chip--button{cursor:pointer}
+  .chip--button:hover{background:#fee2e2;color:var(--c-danger)}
   .chip--me{background:var(--c-primary-100);color:var(--c-primary-900);font-weight:600}
-  .chip--me:hover{background:#fee2e2;color:var(--c-danger)}
   .chip__x{font-size:11px;opacity:.6}
   .day-card__foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
   .day-card__count{font-size:var(--fs-xs);color:var(--c-neutral-700);font-weight:600}
@@ -130,11 +127,11 @@
   .modal__head h3{margin:0;font-size:var(--fs-lg)}
   .modal__close{background:none;border:0;font-size:24px;line-height:1;color:var(--c-neutral-500);min-width:44px;min-height:44px}
   .modal__list{display:grid;gap:var(--space-2)}
-  .voter-row{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);border:1px solid var(--c-neutral-200);border-radius:var(--radius-sm)}
-  .voter-row__name{flex:1;font-size:var(--fs-sm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .voter-row__actions{display:flex;gap:var(--space-1)}
-  .modal__new{display:flex;gap:var(--space-2);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px dashed var(--c-neutral-200)}
-  .modal__new .input{flex:1;min-width:0}
+  .voter-row{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);border:1px solid var(--c-neutral-200);border-radius:var(--radius-sm);flex-wrap:wrap}
+  .voter-row__name{flex:1;font-size:var(--fs-sm);min-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .voter-row__actions{display:flex;gap:var(--space-1);flex-wrap:wrap}
+  .modal__new{display:flex;gap:var(--space-2);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px dashed var(--c-neutral-200);flex-wrap:wrap}
+  .modal__new .input{flex:1;min-width:140px}
 
   .toast{position:fixed;left:50%;bottom:var(--space-5);transform:translate(-50%,16px);background:var(--c-neutral-900);color:#fff;padding:var(--space-3) var(--space-5);border-radius:var(--radius-pill);font-size:var(--fs-sm);box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:100;max-width:calc(100vw - 32px);text-align:center}
   .toast.is-visible{opacity:1;transform:translate(-50%,0)}
@@ -151,58 +148,53 @@
   }
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
-<!-- 腾讯地图：代理模式，前端不承载密钥；必须在 SDK 加载前配置 -->
-<script type="text/javascript">
-  window._TMapSecurityConfig = {
-    serviceHost: 'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__',
-  };
-</script>
-<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service" onerror="window.__tmapFailed=true"></script>
+<!-- 腾讯地图 GL JS：非默认场景，需自行申请 Key 并替换下方占位符（见 README / 页面提示） -->
+<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service&key=PXXBZ-5YZYL-6EKPW-EOJFM-UR7P7-S4BX6" onerror="window.__tmapFailed=true"></script>
 </head>
-<body data-page-node-id="mFwLVHYv3AHwJlq1eMSoqE">
-<div class="wrap" data-page-node-id="Tnmv3EYfwUBEwsImw2eo8F">
-  <header class="hero" data-page-node-id="oBScTgJAxNygwLGfw3yTn6">
-    <div class="hero__top" data-page-node-id="Z1ff0uGBbPwbyeeFgGkrdi">
-      <div data-page-node-id="PKC3O9YnKAQgvqb1jahhS6">
-        <h1 data-page-node-id="2omx4g7QZEtHnwgosPdM2o">约球投票</h1>
-        <p class="hero__sub" data-page-node-id="TAn4c2mMg9i50Bu0BPoi7t">自动读取登录身份 · 无需输入 · 所有人都能编辑 · 日期每天更新</p>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero__top">
+      <div>
+        <h1>约球投票</h1>
+        <p class="hero__sub">无需昵称 · 一人一个固定身份 · 日期每天更新 · 只改自己填的内容</p>
       </div>
-      <span class="range" id="range" data-page-node-id="q4YoYU4lMbhSZuSsFkw1Pz">—</span>
+      <span class="range" id="range">—</span>
     </div>
-    <div class="me-card" data-page-node-id="wybLpb6QF3lQVd6lAXojZM">
-      <div class="me-card__left" data-page-node-id="yIwEMAu8Awmk0nec3KrYhR">
-        <span class="avatar avatar--lg" id="myAvatar" aria-label="我的头像" data-page-node-id="ZLGojRYbE88i5A7l0R2Iqk">球</span>
-        <div data-page-node-id="x5znw6qZsyCYwG5zJSKdEG">
-          <div class="me-card__label" data-page-node-id="TGPqSSNR6EA10WN10l99CH">我的身份（自动读取登录信息）</div>
-          <button class="me-name" id="myName" type="button" aria-label="点击修改我的昵称" data-page-node-id="lX5h5Gw3b7sTjaMgqJLrlS"><span id="myNameText" data-page-node-id="nw8t9dPlnaKyYqPQQdZX2G"></span> ✎</button>
+    <div class="me-card">
+      <div class="me-card__left">
+        <span class="avatar avatar--lg" id="myAvatar" aria-label="我的头像">球</span>
+        <div>
+          <div class="me-card__label">我的身份（本机固定，不填昵称）</div>
+          <div class="me-name" id="myName"></div>
         </div>
       </div>
-      <div class="me-card__hint" data-page-node-id="hMxF4R50pXzMdoGAEg4Kac">点昵称可修改 · 头像用昵称首字</div>
+      <div class="me-card__hint">同一设备反复打开始终是同一人 · 报名只算一次</div>
     </div>
-    <p class="notice" data-page-node-id="FSVtHJQqFDhbxMDzNtYBGW">当前为本机模式：同一台设备的人都能编辑；发到微信群后，每台手机的数据各自独立，看不到彼此的实时投票。可到页面底部复制 / 导入数据手动合并。</p>
+    <p class="notice">本机模式：数据存在本机浏览器，群里每台手机各自独立；只能修改/删除自己填的报名和地点。需要全员实时同一份结果时，要接入云端数据库。</p>
   </header>
 
-  <main data-page-node-id="zEA7hX6dVFgIdo9fV9RG2B">
-    <section class="section" aria-labelledby="daysTitle" data-page-node-id="0Gk8cm6UWtAHY4HHDaJzd7">
-      <div class="section__head" data-page-node-id="cfJe8dE4N2MznVGZ7LGiGX">
-        <h2 id="daysTitle" data-page-node-id="9T2QgFJXX6KCzYLEO0dEPP">选日期</h2>
-        <span class="section__note" data-page-node-id="YDUF5pJNoB73gfIDUin3qL">点卡片为自己报名 · 点名字移除任何人 · 点「替人报名」添加他人</span>
+  <main>
+    <section class="section" aria-labelledby="daysTitle">
+      <div class="section__head">
+        <h2 id="daysTitle">选日期</h2>
+        <span class="section__note">点卡片为自己报名/取消 · 点自己名字可移除 · 「替人报名」可添加他人</span>
       </div>
-      <div class="days" id="days" data-page-node-id="C0dztSmTRZxcrKjtdzMqsZ"></div>
-      <div class="summary" id="summary" aria-live="polite" data-page-node-id="d1FHz3iwDhpfbcn65deYBN"></div>
+      <div class="days" id="days"></div>
+      <div class="summary" id="summary" aria-live="polite"></div>
     </section>
 
-    <section class="section" aria-labelledby="venueTitle" data-page-node-id="327niTBueNZHiI44ApHL4q">
-      <div class="section__head" data-page-node-id="eT9GPu94dRstM2yyY7A0kS">
-        <h2 id="venueTitle" data-page-node-id="mWAceT8T2FOE7UiyS4fuk2">打球地点</h2>
-        <span class="section__note" data-page-node-id="neKf5gWPLZaMhVAGc7LpTX">搜索地点，或在地图上点击选点后保存；所有人可编辑</span>
+    <section class="section" aria-labelledby="venueTitle">
+      <div class="section__head">
+        <h2 id="venueTitle">打球地点</h2>
+        <span class="section__note">搜索或在地图上选点 · 只有自己添加的地点可编辑/删除</span>
       </div>
-      <div class="venue-grid" data-page-node-id="0mujb70c1QXPskGg2eM2qU">
-        <div class="card" data-page-node-id="z9M1vrHadPcAjD1QBtddYK">
-          <div class="search" data-page-node-id="NUJ5ZDkXslHs0zWFP1hgNA">
-            <div class="search__row" data-page-node-id="cZIscQ16dhKUbVyvyWL2Wn">
-              <input class="input" id="placeSearch" type="search" placeholder="搜索北京的球馆、公园、学校…" aria-label="搜索地点" data-page-node-id="QjEU3GZEk6LDovhONGtX6E">
-              <button class="btn btn--secondary" id="searchBtn" type="button" data-page-node-id="xCTTY7ptj22CohzPZRZc3g">搜索</button>
+      <div class="venue-grid">
+        <div class="card">
+          <div class="search">
+            <div class="search__row">
+              <input class="input" id="placeSearch" type="search" placeholder="搜索北京的球馆、公园、学校…" aria-label="搜索地点">
+              <button class="btn btn--secondary" id="searchBtn" type="button">搜索</button>
             </div>
             <div class="search__quick" id="searchQuick" aria-label="热门搜索">
               <button type="button" data-kw="羽毛球馆">羽毛球馆</button>
@@ -210,81 +202,82 @@
               <button type="button" data-kw="公园">公园</button>
               <button type="button" data-kw="学校">学校</button>
             </div>
-            <p class="search__hint">默认定位北京，搜索以地图中心为参考；点结果即可选点。</p>
-            <div class="search__results" id="searchResults" hidden data-page-node-id="wgSoe5VmEjSl2VsE1g5GJR"></div>
+            <p class="search__hint">默认定位北京；未配置地图 Key 时，点快捷搜索可用内置地点列表选点。</p>
+            <div class="search__results" id="searchResults" hidden></div>
           </div>
-          <div id="map" role="application" aria-label="地图选点：点击地图设置打球地点" data-page-node-id="NNfsgsQr9NNTv9uuYG0bou"></div>
-          <div class="map-fallback" id="mapFallback" data-page-node-id="EIyEwOH9IU2O4KchuE5NPC">地图暂时无法加载，可在下方“手动输入坐标”填写经纬度后保存地点。</div>
-          <div class="form-grid" data-page-node-id="VEiLFjYf8Igi6DRTAt7uZm">
-            <div class="field" data-page-node-id="bHFZtYqD6KtHrrfceTSLwb">
-              <label for="venueName" data-page-node-id="WPCMM9uCBK7Jg0IkkshjaS">场地名称</label>
-              <input class="input" id="venueName" type="text" maxlength="40" placeholder="例如：滨江体育馆 2 号场" data-page-node-id="tTunhkoadjnCjRhdOCOD82">
+          <div id="map" role="application" aria-label="地图选点：点击地图设置打球地点"></div>
+          <div class="map-fallback" id="mapFallback">地图未加载：在 GitHub Pages 上需把 index.html 里的 key 占位符替换为自己在腾讯位置服务申请的免费 Key。未配置前可用上方快捷搜索和下方手动坐标保存地点。</div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="venueName">场地名称</label>
+              <input class="input" id="venueName" type="text" maxlength="40" placeholder="例如：首体 2 号场">
             </div>
-            <div class="field" data-page-node-id="PDrhT0qBf1XLIeA3wNEM2H">
-              <label for="venueAddress" data-page-node-id="PDxsl250H0NBUxIIqhijaJ">地址</label>
-              <input class="input" id="venueAddress" type="text" maxlength="120" placeholder="选点后自动填入，可修改" data-page-node-id="NxkqRpZmjQFWGEvq6cyPYI">
+            <div class="field">
+              <label for="venueAddress">地址</label>
+              <input class="input" id="venueAddress" type="text" maxlength="120" placeholder="选点后自动填入，可修改">
             </div>
-            <div class="field field--full" data-page-node-id="OqhBu5NKjXeCD74FPiMgLl">
-              <label for="venueNote" data-page-node-id="xIwlTfT3ECXpYnE2HhVRyv">备注（可选）</label>
+            <div class="field field--full">
+              <label for="venueNote">备注（可选）</label>
               <textarea class="input" id="venueNote" maxlength="200" placeholder="例如：周六下午 3 点，进门左手边"></textarea>
             </div>
           </div>
-          <details data-page-node-id="y4n0FzaWjRMMMOFoiNqAPP">
-            <summary data-page-node-id="QrOPzbxzkDxy06z8ziEEnC">手动输入坐标（GCJ-02 / 腾讯地图坐标系）</summary>
-            <div class="coords" data-page-node-id="MzUN4i9RKbS5Wtx5jc5hrh">
-              <input class="input" id="latInput" type="number" step="0.000001" placeholder="纬度 如 39.904200" aria-label="纬度" data-page-node-id="0Q92tA7myC7IxM74Jspsn2">
-              <input class="input" id="lngInput" type="number" step="0.000001" placeholder="经度 如 116.407400" aria-label="经度" data-page-node-id="d8gnAO5TjDmcEyz9zfvGwR">
+          <details>
+            <summary>手动输入坐标（GCJ-02 / 腾讯地图坐标系）</summary>
+            <div class="coords">
+              <input class="input" id="latInput" type="number" step="0.000001" placeholder="纬度 如 39.904200" aria-label="纬度">
+              <input class="input" id="lngInput" type="number" step="0.000001" placeholder="经度 如 116.407400" aria-label="经度">
             </div>
           </details>
-          <div class="form-actions" data-page-node-id="lZyKs2udKhrpMKEsstqVr9">
-            <button class="btn" id="saveVenue" type="button" data-page-node-id="ebuwTHTGj64Wbdv9uxzNQY">保存地点</button>
-            <button class="btn btn--secondary" id="cancelEditVenue" type="button" hidden data-page-node-id="J7JonQDyHGXIT51w1PokOz">取消编辑</button>
-            <button class="btn btn--secondary" id="clearPick" type="button" data-page-node-id="WOxa7JQ9qnZkH4JXzlx81h">清除选点</button>
+          <div class="form-actions">
+            <button class="btn" id="saveVenue" type="button">保存地点</button>
+            <button class="btn btn--secondary" id="cancelEditVenue" type="button" hidden>取消编辑</button>
+            <button class="btn btn--secondary" id="clearPick" type="button">清除选点</button>
           </div>
         </div>
-        <div data-page-node-id="8nIPMfxP4aBuCyiPyxEoKq">
-          <div class="card" data-page-node-id="y1GBMdl4rvlfDYuUxTi6E4">
-            <h3 style="font-size:var(--fs-md);margin:0 0 var(--space-3)" data-page-node-id="CGAxqbNBt7urw7DtD0bHN7">已保存的地点</h3>
-            <div class="venue-list" id="venueList" data-page-node-id="k6OdpiZ9nZajpwhZYS3dYC"></div>
-            <p class="hint" id="venueEmpty" data-page-node-id="XM9teQYsZOaFlHRKVLsdXc">还没有保存地点。先在地图上选点，再填写名称并保存。</p>
+        <div>
+          <div class="card">
+            <h3 style="font-size:var(--fs-md);margin:0 0 var(--space-3)">已保存的地点</h3>
+            <div class="venue-list" id="venueList"></div>
+            <p class="hint" id="venueEmpty">还没有保存地点。选点后填写名称即可保存。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="shareTitle" data-page-node-id="agNVwWHR0xGx3psU1AUcWt">
-      <div class="section__head" data-page-node-id="n24Kr49H5wM5A6HXx4nfbw">
-        <h2 id="shareTitle" data-page-node-id="KoNu0EIjTpb2L3jVUOxS7m">结果分享</h2>
-        <span class="section__note" data-page-node-id="cAuzZxHNQBx10wMGNqBVY0">本机模式下，可复制数据发给朋友，对方导入后即可查看</span>
+    <section class="section" aria-labelledby="shareTitle">
+      <div class="section__head">
+        <h2 id="shareTitle">结果分享</h2>
+        <span class="section__note">本机模式下，可复制数据发给朋友，对方导入后即可查看</span>
       </div>
-      <div class="card" data-page-node-id="jgv7OWGnJcfdfNe4k3NXKp">
-        <div class="form-actions" style="margin-top:0" data-page-node-id="WsYnkt1D3JILxVGpKiIze1">
-          <button class="btn btn--secondary" id="exportData" type="button" data-page-node-id="WkF61flteZVtCQSenAp8xu">复制投票数据</button>
-          <button class="btn btn--secondary" id="importData" type="button" data-page-node-id="2b5yZwvfe1OmyYXCIVeSna">导入投票数据</button>
+      <div class="card">
+        <div class="form-actions" style="margin-top:0">
+          <button class="btn btn--secondary" id="exportData" type="button">复制投票数据</button>
+          <button class="btn btn--secondary" id="importData" type="button">导入投票数据</button>
         </div>
-        <p class="hint" data-page-node-id="tj4fsXhGlF878CGKrKltam">导入会合并对方的投票人、报名与地点（按 ID 去重），不会覆盖本机已有数据。</p>
+        <p class="hint">导入按身份 ID 合并，不会把同一个人算成两个；他人创建的内容导入后你依然不能编辑。</p>
       </div>
     </section>
   </main>
 
-  <footer data-page-node-id="3WO3kaQx5ACYtRouFjqE2z">微信群使用场景下，如需所有人实时看到同一份结果，需要接入共享后端（微信授权身份 + 云数据库）。</footer>
+  <footer>微信群场景如需所有人实时看到同一份结果，需要接入共享后端（云数据库 + 登录）。</footer>
 </div>
 
-<div class="modal" id="voterModal" hidden data-page-node-id="IEkBXxSLEclprV8YqkuCoe">
-  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-page-node-id="uKWGVXvXRJsfydfohq3ONS">
-    <div class="modal__head" data-page-node-id="pKY6ZlT8cXLdZV7c4WcKH2">
-      <h3 id="modalTitle" data-page-node-id="m0230ETAvrDie6TMV9wAvb">替人报名</h3>
-      <button class="modal__close" id="modalClose" type="button" aria-label="关闭" data-page-node-id="Zst8WM2iMZIRwmkumO0WUj">✕</button>
+<div class="modal" id="voterModal" hidden>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__head">
+      <h3 id="modalTitle">替人报名</h3>
+      <button class="modal__close" id="modalClose" type="button" aria-label="关闭">✕</button>
     </div>
-    <div class="modal__list" id="modalList" data-page-node-id="IcMSZtEnsiydBMMvSchpgA"></div>
-    <div class="modal__new" data-page-node-id="hHwJhgnGmFDfs8lWXY41A2">
-      <input class="input" id="newVoterName" type="text" maxlength="24" placeholder="新投票人昵称" data-page-node-id="UKoPUc90Y8AFHelxqIaBEZ">
-      <button class="btn" id="addNewVoter" type="button" data-page-node-id="1qdHqGmoihlc1PkOJqOxeq">添加并报名</button>
+    <p class="hint" style="margin:0 0 var(--space-3)">你只能取消/删除由你添加的报名；别人添加的记录只可查看。</p>
+    <div class="modal__list" id="modalList"></div>
+    <div class="modal__new">
+      <input class="input" id="newVoterName" type="text" maxlength="20" placeholder="备注（选填，仅用于区分）">
+      <button class="btn" id="addNewVoter" type="button">添加并报名</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite" data-page-node-id="t1gEnfTaNLjuOYEDlwxRe7"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -293,9 +286,10 @@
   var KEY = { me: 'badminton.me', voters: 'badminton.voters', votes: 'badminton.votes', venues: 'badminton.venues', active: 'badminton.venue.active' };
   var WEEK = ['周日','周一','周二','周三','周四','周五','周六'];
   var BEIJING = { lat: 39.904200, lng: 116.407400 };
+  var CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   var state = { me: null, voters: {}, votes: {}, venues: [], activeId: '' };
   var $ = function (s) { return document.querySelector(s); };
-  var uid = function () { return 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); };
+  var uid = function () { return 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); };
 
   function read(key, fallback) {
     try { var v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); }
@@ -307,66 +301,100 @@
     write(KEY.venues, state.venues); write(KEY.active, state.activeId);
   }
   function hash(str) { var h = 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); }
-  function initialOf(name) { var s = String(name || '').trim(); return s ? s.charAt(0).toUpperCase() : '球'; }
-  // 读取登录人信息：宿主注入变量 / URL 参数（微信内 H5 无法静默获取头像昵称，故做多源探测 + 兜底）
-  function detectLoginProfile() {
-    var u = null, keys = ['__USER__','__user__','USER','userInfo','__USER_INFO__','__LOGIN_USER__','__profile__','currentUser','__WORKBUDDY_USER__'];
-    for (var i = 0; i < keys.length; i++) {
-      var v = window[keys[i]];
-      if (v && typeof v === 'object' && (v.name || v.nickname || v.nickName || v.avatar || v.avatarUrl || v.headImgUrl)) { u = v; break; }
-    }
-    var name = u ? (u.name || u.nickname || u.nickName || '') : '';
-    var avatar = u ? (u.avatar || u.avatarUrl || u.headImgUrl || u.face || '') : '';
-    try {
-      var q = new URLSearchParams(location.search);
-      name = q.get('name') || q.get('nickname') || name;
-      avatar = q.get('avatar') || avatar;
-    } catch (e) {}
-    return { name: String(name || '').slice(0, 24), avatar: String(avatar || '').slice(0, 500) };
+  function randCode() {
+    var s = ''; for (var i = 0; i < 4; i++) s += CODE_CHARS.charAt(Math.floor(Math.random() * CODE_CHARS.length)); return s;
+  }
+  function colorFor(id) { return 'hsl(' + (hash(String(id)) % 360) + ',62%,90%)'; }
+  function inkFor(id) { return 'hsl(' + (hash(String(id)) % 360) + ',55%,28%)'; }
+  function makeIdentity(id) {
+    id = id || uid();
+    var code = String(id).slice(-4).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4) || randCode();
+    return { id: id, code: code, createdBy: id };
+  }
+  function displayName(v) {
+    if (!v) return '未知球友';
+    if (v.note) return v.note;
+    if (v.legacyName) return v.legacyName;
+    return '球友 ' + (v.code || '????');
+  }
+  function initialOf(v) {
+    var s = displayName(v).trim();
+    return s ? s.charAt(0).toUpperCase() : '球';
   }
   function renderAvatar(node, v, cls) {
-    var name = (v && v.name) || '球友';
-    var url = v && v.avatar;
     node.className = 'avatar ' + (cls || '');
-    node.replaceChildren();
-    node.textContent = initialOf(name);
-    node.setAttribute('aria-label', name + ' 的头像');
-    if (typeof url === 'string' && /^https?:\/\//i.test(url)) {
-      var img = el('img');
-      img.className = 'avatar--img'; img.style.width = '100%'; img.style.height = '100%';
-      img.alt = name; img.referrerPolicy = 'no-referrer';
-      img.onerror = function () { if (img.parentNode === node) node.removeChild(img); node.textContent = initialOf(name); };
-      img.src = url;
-      node.replaceChildren(img);
-    }
+    node.style.background = v && v.id ? colorFor(v.id) : '#dbeafe';
+    node.style.color = v && v.id ? inkFor(v.id) : '#1e40af';
+    node.textContent = initialOf(v);
+    node.setAttribute('aria-label', displayName(v) + ' 的头像');
     return node;
   }
-  function uniqueName() {
-    var used = {}; Object.keys(state.voters).forEach(function (id) { used[state.voters[id].name] = true; });
-    var n; do { n = '球友' + (100 + Math.floor(Math.random() * 900)); } while (used[n]);
-    return n;
+  function ensureVoter(id) {
+    if (id && !state.voters[id]) {
+      state.voters[id] = makeIdentity(id);
+      state.voters[id].createdBy = state.me && state.me.id ? state.me.id : id;
+    }
+    return state.voters[id];
   }
-  function ensureVoterByName(name) {
-    var found = null;
-    Object.keys(state.voters).forEach(function (id) { if (state.voters[id].name === name) found = state.voters[id]; });
-    if (!found) { found = { id: uid(), name: name, avatar: '' }; state.voters[found.id] = found; }
-    return found;
+
+  function normalizeVote(x) {
+    if (typeof x === 'string') return { vid: x, by: x };
+    if (x && typeof x === 'object' && typeof x.vid === 'string') return { vid: x.vid, by: x.by || x.vid };
+    return null;
   }
+  function votesFor(key) { return Array.isArray(state.votes[key]) ? state.votes[key] : []; }
+  function addVote(key, vid, by) {
+    var arr = votesFor(key).slice();
+    if (arr.some(function (e) { return e.vid === vid; })) return false;
+    arr.push({ vid: vid, by: by });
+    state.votes[key] = arr;
+    return true;
+  }
+  function canRemoveEntry(e) { return !!e && (e.by === state.me.id || e.vid === state.me.id); }
+  function removeEntry(key, vid, by) {
+    state.votes[key] = votesFor(key).filter(function (e) { return !(e.vid === vid && (!by || e.by === by)); });
+  }
+  function canEditVenue(v) { return !!v && (v.createdBy === state.me.id || !v.createdBy); }
+  function creatorName(id) {
+    if (!id) return '匿名';
+    if (id === state.me.id) return '我';
+    return displayName(state.voters[id]);
+  }
+
   function migrate() {
     var changed = false;
     Object.keys(state.votes).forEach(function (k) {
       var arr = state.votes[k];
-      if (Array.isArray(arr)) {
-        state.votes[k] = arr.map(function (x) {
-          if (typeof x === 'string') { changed = true; return ensureVoterByName(x).id; }
-          return x;
-        }).filter(function (x) { return !!x; });
+      if (!Array.isArray(arr)) { state.votes[k] = []; changed = true; return; }
+      var out = [], seen = {};
+      arr.forEach(function (raw) {
+        var e = normalizeVote(raw);
+        if (e && !seen[e.vid]) { seen[e.vid] = true; out.push(e); if (raw !== e) changed = true; }
+        else if (raw !== e) changed = true;
+      });
+      state.votes[k] = out;
+    });
+    Object.keys(state.votes).forEach(function (k) {
+      state.votes[k].forEach(function (e) { if (!state.voters[e.vid]) { ensureVoter(e.vid); changed = true; } });
+    });
+    Object.keys(state.voters).forEach(function (id) {
+      var v = state.voters[id];
+      if (!v || typeof v !== 'object') { delete state.voters[id]; changed = true; return; }
+      if (!v.code) { v.code = (String(id).slice(-4).toUpperCase().replace(/[^A-Z0-9]/g, '') || randCode()); changed = true; }
+      if (!v.id) { v.id = id; changed = true; }
+      if (!v.createdBy) { v.createdBy = (id === state.me.id ? state.me.id : id); changed = true; }
+    });
+    state.venues.forEach(function (v) {
+      if (v && typeof v.createdBy === 'object' && v.createdBy) {
+        v.createdBy = v.createdBy.id || state.me.id; changed = true;
       }
+      if (v && !v.createdBy) { v.createdBy = state.me.id; changed = true; }
     });
     if (changed) persist();
   }
+
   function load() {
-    state.me = read(KEY.me, null);
+    var stored = read(KEY.me, null);
     state.voters = read(KEY.voters, {}) || {};
     state.votes = read(KEY.votes, {}) || {};
     state.venues = read(KEY.venues, []) || [];
@@ -374,25 +402,19 @@
     if (!state.voters || typeof state.voters !== 'object') state.voters = {};
     if (!state.votes || typeof state.votes !== 'object') state.votes = {};
     if (!Array.isArray(state.venues)) state.venues = [];
-    if (!state.me || !state.me.id) {
-      var p = detectLoginProfile();
-      var name = p.name || uniqueName();
-      state.me = { id: uid(), name: name, avatar: p.avatar || '' };
-      state.voters[state.me.id] = state.me;
+    if (!stored || !stored.id) {
+      state.me = makeIdentity();
       persist();
     } else {
-      // 已存在身份时，若宿主/链接提供了登录信息且本地仍是占位昵称，则同步更新
-      var p2 = detectLoginProfile();
-      var meVoter = state.voters[state.me.id];
-      if (p2.name && /^球友\d{3}$/.test(state.me.name)) {
-        state.me.name = p2.name; if (meVoter) meVoter.name = p2.name;
-      }
-      if (p2.avatar && !state.me.avatar) {
-        state.me.avatar = p2.avatar; if (meVoter) meVoter.avatar = p2.avatar;
-      }
-      persist();
+      state.me = makeIdentity(stored.id);
+      state.me.note = stored.note || '';
+      state.me.legacyName = stored.legacyName || '';
     }
     if (!state.voters[state.me.id]) state.voters[state.me.id] = state.me;
+    else {
+      state.voters[state.me.id].code = state.me.code;
+      state.voters[state.me.id].note = state.me.note || '';
+    }
     migrate();
   }
 
@@ -420,17 +442,17 @@
   }
   function renderMe() {
     renderAvatar($('#myAvatar'), state.me, 'avatar--lg');
-    $('#myNameText').textContent = state.me.name;
+    $('#myName').textContent = displayName(state.me) + '（我）';
   }
   function renderDays() {
     var box = $('#days'); box.replaceChildren();
     days.forEach(function (day) {
-      var ids = Array.isArray(state.votes[day.key]) ? state.votes[day.key] : [];
-      var mine = ids.indexOf(state.me.id) !== -1;
+      var entries = votesFor(day.key);
+      var mine = entries.some(function (e) { return e.vid === state.me.id; });
       var card = el('div', 'day-card');
       card.setAttribute('role', 'button'); card.tabIndex = 0; card.dataset.key = day.key;
       card.setAttribute('aria-pressed', mine ? 'true' : 'false');
-      card.setAttribute('aria-label', day.month + '月' + day.num + '日 ' + day.week + '，' + ids.length + '人报名，' + (mine ? '已报名，点击取消' : '点击报名'));
+      card.setAttribute('aria-label', day.month + '月' + day.num + '日 ' + day.week + '，' + entries.length + '人报名，' + (mine ? '已报名，点击取消' : '点击报名'));
 
       var top = el('div', 'day-card__top');
       var left = el('div');
@@ -440,22 +462,31 @@
       top.append(el('span', 'badge ' + (day.offset === 0 ? 'badge--today' : 'badge badge--state'), day.offset === 0 ? '今天' : day.offset === 1 ? '明天' : '报名'));
 
       var list = el('div', 'voters');
-      if (!ids.length) list.append(el('span', 'empty-voters', '暂无人报名'));
-      else ids.forEach(function (id) {
-        var v = state.voters[id] || { name: '未知球友', avatar: '' };
-        var chip = el('button', 'chip' + (id === state.me.id ? ' chip--me' : ''));
-        chip.type = 'button';
-        chip.setAttribute('aria-label', '移除 ' + v.name);
+      if (!entries.length) list.append(el('span', 'empty-voters', '暂无人报名'));
+      else entries.forEach(function (e) {
+        var v = state.voters[e.vid] || makeIdentity(e.vid);
+        var removable = canRemoveEntry(e);
+        var chip = el(removable ? 'button' : 'span', 'chip' + (removable ? ' chip--button' : '') + (e.vid === state.me.id ? ' chip--me' : ''));
+        if (removable) {
+          chip.type = 'button';
+          chip.setAttribute('aria-label', '移除 ' + displayName(v));
+        }
         chip.append(renderAvatar(el('span'), v, 'avatar--sm'));
-        chip.append(document.createTextNode(v.name));
-        if (id === state.me.id) chip.append(el('span', '', '(我)'));
-        chip.append(el('span', 'chip__x', '×'));
-        chip.addEventListener('click', function (e) { e.stopPropagation(); removeVoter(day.key, id); });
+        chip.append(document.createTextNode(displayName(v)));
+        if (e.vid === state.me.id) chip.append(el('span', '', '(我)'));
+        if (removable) {
+          chip.append(el('span', 'chip__x', '×'));
+          chip.addEventListener('click', function (ev) {
+            ev.stopPropagation();
+            removeEntry(day.key, e.vid, e.by);
+            persist(); renderDays(); renderSummary(); toast('已移除 ' + displayName(v));
+          });
+        }
         list.append(chip);
       });
 
       var foot = el('div', 'day-card__foot');
-      foot.append(el('span', 'day-card__count', ids.length + ' 人报名'));
+      foot.append(el('span', 'day-card__count', entries.length + ' 人报名'));
       var add = el('button', 'add-btn', '替人报名'); add.type = 'button';
       add.setAttribute('aria-label', '为 ' + day.month + '月' + day.num + '日替人报名');
       add.addEventListener('click', function (e) { e.stopPropagation(); openModal(day.key); });
@@ -474,7 +505,7 @@
   function renderSummary() {
     var total = 0, top = null, topCount = 0;
     days.forEach(function (day) {
-      var n = (state.votes[day.key] || []).length;
+      var n = votesFor(day.key).length;
       total += n;
       if (n > topCount) { topCount = n; top = day; }
     });
@@ -490,16 +521,16 @@
     );
   }
   function toggleVote(key) {
-    var list = (state.votes[key] || []).slice();
-    var i = list.indexOf(state.me.id);
-    if (i === -1) { list.push(state.me.id); toast('报名成功'); }
-    else { list.splice(i, 1); toast('已取消报名'); }
-    state.votes[key] = list; persist(); renderDays(); renderSummary();
-  }
-  function removeVoter(key, id) {
-    var v = state.voters[id];
-    state.votes[key] = (state.votes[key] || []).filter(function (x) { return x !== id; });
-    persist(); renderDays(); renderSummary(); toast('已移除 ' + (v ? v.name : '该球友'));
+    var entries = votesFor(key);
+    var mine = entries.filter(function (e) { return e.vid === state.me.id; })[0];
+    if (mine) {
+      removeEntry(key, state.me.id, mine.by);
+      toast('已取消报名');
+    } else {
+      addVote(key, state.me.id, state.me.id);
+      toast('报名成功');
+    }
+    persist(); renderDays(); renderSummary();
   }
 
   var modalKey = null;
@@ -518,32 +549,33 @@
     if (!ids.length) box.append(el('p', 'hint', '还没有投票人'));
     ids.forEach(function (id) {
       var v = state.voters[id];
-      var checked = (state.votes[modalKey] || []).indexOf(id) !== -1;
+      if (!v || typeof v !== 'object') return;
+      var entries = votesFor(modalKey);
+      var myEntry = entries.filter(function (e) { return e.vid === id && e.by === state.me.id; })[0];
+      var otherEntry = entries.filter(function (e) { return e.vid === id && e.by !== state.me.id; })[0];
       var row = el('div', 'voter-row');
       row.append(renderAvatar(el('span'), v));
-      row.append(el('span', 'voter-row__name', v.name + (id === state.me.id ? '（我）' : '')));
+      row.append(el('span', 'voter-row__name', displayName(v) + (id === state.me.id ? '（我）' : '')));
       var acts = el('div', 'voter-row__actions');
-      var toggle = el('button', 'btn btn--secondary btn--sm', checked ? '取消报名' : '报名'); toggle.type = 'button';
-      toggle.addEventListener('click', function () {
-        var list = (state.votes[modalKey] || []).slice();
-        var i = list.indexOf(id);
-        if (i === -1) list.push(id); else list.splice(i, 1);
-        state.votes[modalKey] = list; persist(); renderModalList(); renderDays(); renderSummary();
-      });
-      acts.append(toggle);
-      if (id !== state.me.id) {
-        var ren = el('button', 'btn btn--secondary btn--sm', '改名'); ren.type = 'button';
-        ren.addEventListener('click', function () {
-          var n = window.prompt('修改昵称：', v.name);
-          if (n && n.trim()) { v.name = n.trim().slice(0, 24); persist(); renderModalList(); renderDays(); toast('昵称已更新'); }
+      if (otherEntry && !myEntry) {
+        acts.append(el('span', 'hint', '他人已报名'));
+      } else {
+        var toggle = el('button', 'btn btn--secondary btn--sm', myEntry ? '取消报名' : '报名'); toggle.type = 'button';
+        toggle.addEventListener('click', function () {
+          if (myEntry) removeEntry(modalKey, id, state.me.id);
+          else addVote(modalKey, id, state.me.id);
+          persist(); renderModalList(); renderDays(); renderSummary();
         });
-        acts.append(ren);
+        acts.append(toggle);
+      }
+      if (id !== state.me.id && v.createdBy === state.me.id) {
         var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
         del.addEventListener('click', function () {
-          if (!window.confirm('删除投票人「' + v.name + '」？')) return;
-          delete state.voters[id];
-          Object.keys(state.votes).forEach(function (k) { state.votes[k] = (state.votes[k] || []).filter(function (x) { return x !== id; }); });
-          persist(); renderModalList(); renderDays(); renderSummary(); toast('投票人已删除');
+          if (!window.confirm('删除「' + displayName(v) + '」及其由你添加的报名？')) return;
+          Object.keys(state.votes).forEach(function (k) { removeEntry(k, id, state.me.id); });
+          var referenced = Object.keys(state.votes).some(function (k) { return votesFor(k).some(function (e) { return e.vid === id; }); });
+          if (!referenced) delete state.voters[id];
+          persist(); renderModalList(); renderDays(); renderSummary(); toast('已删除你添加的记录');
         });
         acts.append(del);
       }
@@ -551,14 +583,14 @@
     });
   }
   function addNewVoter() {
-    var n = $('#newVoterName').value.trim();
-    if (!n) { toast('请输入昵称'); return; }
-    var v = ensureVoterByName(n.slice(0, 24));
-    var list = (state.votes[modalKey] || []).slice();
-    if (list.indexOf(v.id) === -1) list.push(v.id);
-    state.votes[modalKey] = list;
+    var note = $('#newVoterName').value.trim().slice(0, 20);
+    var v = makeIdentity();
+    v.note = note || '';
+    v.createdBy = state.me.id;
+    state.voters[v.id] = v;
+    addVote(modalKey, v.id, state.me.id);
     $('#newVoterName').value = '';
-    persist(); renderModalList(); renderDays(); renderSummary(); toast('已添加 ' + v.name);
+    persist(); renderModalList(); renderDays(); renderSummary(); toast('已添加 ' + displayName(v));
   }
 
   function renderVenues() {
@@ -571,8 +603,7 @@
       item.append(title);
       item.append(el('div', 'venue-item__meta', (v.address || '未填写地址') + ' · ' + Number(v.lat).toFixed(5) + ', ' + Number(v.lng).toFixed(5)));
       if (v.note) item.append(el('div', 'venue-item__meta', '备注：' + v.note));
-      var by = typeof v.createdBy === 'object' && v.createdBy ? v.createdBy.name : (v.createdBy || '匿名');
-      item.append(el('div', 'venue-item__meta', '由 ' + by + ' 添加'));
+      item.append(el('div', 'venue-item__meta', '由 ' + creatorName(v.createdBy) + ' 添加'));
       var actions = el('div', 'venue-item__actions');
       var locate = el('button', 'btn btn--secondary btn--sm', '在地图查看'); locate.type = 'button';
       locate.addEventListener('click', function () {
@@ -580,23 +611,26 @@
         $('#latInput').value = v.lat; $('#lngInput').value = v.lng;
       });
       actions.append(locate);
-      var edit = el('button', 'btn btn--secondary btn--sm', '编辑'); edit.type = 'button';
-      edit.addEventListener('click', function () { fillVenueForm(v); toast('已载入编辑，修改后点「保存修改」'); });
-      actions.append(edit);
-      if (v.id !== state.activeId) {
-        var set = el('button', 'btn btn--secondary btn--sm', '设为约定地点'); set.type = 'button';
-        set.addEventListener('click', function () { state.activeId = v.id; persist(); renderVenues(); renderSummary(); toast('已设为约定地点'); });
-        actions.append(set);
+      if (canEditVenue(v)) {
+        var edit = el('button', 'btn btn--secondary btn--sm', '编辑'); edit.type = 'button';
+        edit.addEventListener('click', function () { fillVenueForm(v); toast('已载入编辑，修改后点「保存修改」'); });
+        actions.append(edit);
+        if (v.id !== state.activeId) {
+          var set = el('button', 'btn btn--secondary btn--sm', '设为约定地点'); set.type = 'button';
+          set.addEventListener('click', function () { state.activeId = v.id; persist(); renderVenues(); renderSummary(); toast('已设为约定地点'); });
+          actions.append(set);
+        }
+        var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
+        del.addEventListener('click', function () {
+          if (!window.confirm('确定删除「' + (v.name || '未命名地点') + '」？')) return;
+          state.venues = state.venues.filter(function (x) { return x.id !== v.id; });
+          if (state.activeId === v.id) state.activeId = '';
+          if (editingVenueId === v.id) resetVenueForm();
+          persist(); renderVenues(); renderSummary(); toast('地点已删除');
+        });
+        actions.append(del);
       }
-      var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
-      del.addEventListener('click', function () {
-        if (!window.confirm('确定删除「' + (v.name || '未命名地点') + '」？')) return;
-        state.venues = state.venues.filter(function (x) { return x.id !== v.id; });
-        if (state.activeId === v.id) state.activeId = '';
-        if (editingVenueId === v.id) resetVenueForm();
-        persist(); renderVenues(); renderSummary(); toast('地点已删除');
-      });
-      actions.append(del); item.append(actions); box.append(item);
+      item.append(actions); box.append(item);
     });
   }
 
@@ -634,7 +668,6 @@
       map.on('click', function (evt) { setMarker(evt.latLng); reverseGeocode(evt.latLng); });
     } catch (e) { map = null; $('#mapFallback').classList.add('is-visible'); }
   }
-  // 北京常用球馆（GCJ-02 近似坐标）：地图服务不可用时仍能搜索选点
   var BEIJING_VENUES = [
     { title: '国家体育总局训练局体育馆', address: '北京市东城区体育馆路2号', lat: 39.87620, lng: 116.41830 },
     { title: '首都体育馆', address: '北京市海淀区白石桥路54号', lat: 39.92050, lng: 116.30700 },
@@ -644,7 +677,6 @@
     { title: '清华大学综合体育馆', address: '北京市海淀区清华园街道双清路', lat: 40.00100, lng: 116.32600 },
     { title: '北京航空航天大学体育馆', address: '北京市海淀区学院路37号', lat: 39.97830, lng: 116.34550 },
     { title: '北京师范大学体育馆', address: '北京市海淀区新街口外大街19号', lat: 39.95830, lng: 116.36000 },
-    { title: '北京展览馆剧场体育馆', address: '北京市西城区西直门外大街135号', lat: 39.94540, lng: 116.33500 },
     { title: '奥体中心体育馆', address: '北京市朝阳区安定路甲3号', lat: 39.98870, lng: 116.39080 },
     { title: '五棵松体育馆', address: '北京市海淀区复兴路69号', lat: 39.90680, lng: 116.27870 },
     { title: '北京理工大学体育馆', address: '北京市海淀区中关村南大街5号', lat: 39.95110, lng: 116.32230 },
@@ -657,9 +689,7 @@
     var lower = kw.toLowerCase();
     return BEIJING_VENUES.filter(function (v) {
       return (v.title + v.address).toLowerCase().indexOf(lower) !== -1;
-    }).map(function (v) {
-      return { title: v.title, address: v.address, lat: v.lat, lng: v.lng };
-    });
+    }).map(function (v) { return { title: v.title, address: v.address, lat: v.lat, lng: v.lng }; });
   }
   function showSearchResults(items, isLocal) {
     var box = $('#searchResults'); box.replaceChildren();
@@ -721,7 +751,8 @@
     var fields = { name: name, address: $('#venueAddress').value.trim(), note: $('#venueNote').value.trim(), lat: lat, lng: lng };
     if (editingVenueId) {
       var v = state.venues.filter(function (x) { return x.id === editingVenueId; })[0];
-      if (v) { Object.keys(fields).forEach(function (k) { v[k] = fields[k]; }); v.updatedBy = state.me.id; }
+      if (v && canEditVenue(v)) { Object.keys(fields).forEach(function (k) { v[k] = fields[k]; }); v.updatedBy = state.me.id; }
+      else { toast('只能修改自己添加的地点'); return; }
       toast('地点已更新');
     } else {
       state.venues.push({ id: 'v' + Date.now().toString(36), name: fields.name, address: fields.address, note: fields.note, lat: fields.lat, lng: fields.lng, createdBy: state.me.id, createdAt: new Date().toISOString() });
@@ -732,13 +763,6 @@
   }
 
   /* ---------- 事件 ---------- */
-  $('#myName').addEventListener('click', function () {
-    var n = window.prompt('修改我的昵称：', state.me.name);
-    if (n && n.trim()) {
-      state.me.name = n.trim().slice(0, 24); state.voters[state.me.id].name = state.me.name;
-      persist(); renderMe(); renderDays(); renderVenues(); toast('昵称已更新');
-    }
-  });
   $('#modalClose').addEventListener('click', closeModal);
   $('#voterModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
   $('#addNewVoter').addEventListener('click', addNewVoter);
@@ -773,11 +797,12 @@
         if (v && id && !state.voters[id]) state.voters[id] = v;
       });
       Object.keys(data.votes || {}).forEach(function (k) {
-        var current = Array.isArray(state.votes[k]) ? state.votes[k].slice() : [];
-        (Array.isArray(data.votes[k]) ? data.votes[k] : []).forEach(function (id) {
-          if (typeof id === 'string' && current.indexOf(id) === -1) current.push(id);
+        var arr = votesFor(k).slice();
+        (Array.isArray(data.votes[k]) ? data.votes[k] : []).forEach(function (raw2) {
+          var e = normalizeVote(raw2);
+          if (e && !arr.some(function (x) { return x.vid === e.vid; })) arr.push(e);
         });
-        state.votes[k] = current;
+        state.votes[k] = arr;
       });
       migrate();
       (data.venues || []).forEach(function (v) {
