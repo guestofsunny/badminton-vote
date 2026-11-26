@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="Oik84EJzJALKYTYyG8gNh0">
+<head data-page-node-id="PDneGAMkMbPHx9twfsNJky">
+<meta charset="utf-8" data-page-node-id="NGIYBe24k9dL4evnHBC0Ey">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="zRb47cwVPAAXkTzUmramwR">
+<meta name="color-scheme" content="light" data-page-node-id="9lsOPGPUVFd3qpwYGMTDNX">
+<title>约球投票 · 未来 7 天</title>
+<style>
+  :root{
+    --c-primary-50:#eff6ff; --c-primary-100:#dbeafe; --c-primary-500:#3b82f6;
+    --c-primary-600:#1d4ed8; --c-primary-700:#1e40af; --c-primary-900:#1e3a8a;
+    --c-neutral-0:#ffffff; --c-neutral-50:#f6f8fc; --c-neutral-100:#eef2f7;
+    --c-neutral-200:#dde4ee; --c-neutral-500:#5b6472; --c-neutral-700:#354052;
+    --c-neutral-900:#111827;
+    --c-success:#15803d; --c-success-bg:#ecfdf3; --c-danger:#b91c1c; --c-warn:#b45309;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+    --radius-sm:8px; --radius-md:12px; --radius-lg:16px; --radius-pill:999px;
+    --shadow-sm:0 1px 2px rgba(17,24,39,.06),0 1px 3px rgba(17,24,39,.04);
+    --shadow-md:0 8px 24px rgba(29,78,216,.10);
+    --font-sans:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    --fs-xs:12px; --fs-sm:14px; --fs-md:16px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--c-neutral-50);color:var(--c-neutral-900);font-family:var(--font-sans);font-size:var(--fs-md);line-height:1.55;-webkit-font-smoothing:antialiased}
+  button,input,textarea{font:inherit;color:inherit}
+  button{cursor:pointer}
+  :focus-visible{outline:3px solid var(--c-primary-500);outline-offset:2px}
+  .wrap{max-width:1080px;margin:0 auto;padding:var(--space-4)}
+
+  .hero{background:linear-gradient(135deg,var(--c-primary-50),var(--c-neutral-0) 70%);border:1px solid var(--c-neutral-200);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm);margin-bottom:var(--space-5)}
+  .hero__top{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:flex-start;justify-content:space-between}
+  h1{font-size:var(--fs-2xl);line-height:1.25;margin:0 0 var(--space-1);letter-spacing:-.02em}
+  .hero__sub{margin:0;color:var(--c-neutral-500);font-size:var(--fs-sm)}
+  .range{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-pill);padding:var(--space-2) var(--space-4);font-size:var(--fs-sm);font-weight:600;color:var(--c-primary-700);white-space:nowrap}
+
+  .me-card{margin-top:var(--space-5);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);padding:var(--space-3)}
+  .me-card__left{display:flex;align-items:center;gap:var(--space-3);min-width:0}
+  .me-card__label{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+  .me-name{display:inline-flex;align-items:center;gap:var(--space-1);background:none;border:0;padding:0;font-weight:700;font-size:var(--fs-md);color:var(--c-primary-700);text-align:left}
+  .me-name:hover{text-decoration:underline}
+  .me-card__hint{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+  .avatar{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;font-size:14px;font-weight:700;line-height:1;background:#dbeafe;color:#1e40af;flex:none;width:28px;height:28px;overflow:hidden}
+  .avatar--lg{width:48px;height:48px;font-size:22px;border:2px solid var(--c-primary-100)}
+  .avatar--sm{width:20px;height:20px;font-size:11px}
+  .avatar--img{object-fit:cover;background:#dbeafe}
+  .avatar-button{background:none;border:0;padding:0;border-radius:50%;flex:none;width:48px;height:48px;min-height:0;display:inline-flex;align-items:center;justify-content:center}
+
+  .btn{min-height:44px;padding:var(--space-2) var(--space-5);border:1px solid transparent;border-radius:var(--radius-sm);font-weight:600;background:var(--c-primary-600);color:#fff;transition:transform .2s ease,background-color .2s ease,opacity .2s ease}
+  .btn:hover{background:var(--c-primary-700);transform:scale(1.02)}
+  .btn:active{transform:scale(.96)}
+  .btn--secondary{background:var(--c-neutral-0);color:var(--c-primary-700);border-color:var(--c-neutral-200)}
+  .btn--secondary:hover{background:var(--c-primary-50)}
+  .btn--danger{background:var(--c-neutral-0);color:var(--c-danger);border-color:var(--c-neutral-200)}
+  .btn--danger:hover{background:#fef2f2}
+  .btn--sm{min-height:36px;padding:var(--space-1) var(--space-3);font-size:var(--fs-sm)}
+  .input{min-height:44px;padding:var(--space-2) var(--space-3);border:1px solid var(--c-neutral-200);border-radius:var(--radius-sm);background:var(--c-neutral-0);width:100%}
+  .input:focus{border-color:var(--c-primary-500)}
+  .hint{font-size:var(--fs-xs);color:var(--c-neutral-500);margin:var(--space-2) 0 0}
+  .notice{margin-top:var(--space-3);background:#fffbeb;border:1px solid #fcd34d;color:#78350f;border-radius:var(--radius-sm);padding:var(--space-2) var(--space-3);font-size:var(--fs-xs)}
+
+  .section{margin-top:var(--space-8)}
+  .section__head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-4);flex-wrap:wrap}
+  h2{font-size:var(--fs-xl);margin:0;letter-spacing:-.01em}
+  .section__note{font-size:var(--fs-sm);color:var(--c-neutral-500)}
+  .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-3)}
+  .day-card{display:flex;flex-direction:column;gap:var(--space-3);text-align:left;min-height:184px;padding:var(--space-4);background:var(--c-neutral-0);border:2px solid var(--c-neutral-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .day-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .day-card:active{transform:scale(.98)}
+  .day-card[aria-pressed="true"]{border-color:var(--c-primary-600);background:var(--c-primary-50)}
+  .day-card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-2)}
+  .day-card__num{font-size:var(--fs-2xl);font-weight:750;line-height:1}
+  .day-card__meta{font-size:var(--fs-xs);color:var(--c-neutral-500);margin-top:var(--space-1)}
+  .badge{font-size:var(--fs-xs);font-weight:700;border-radius:var(--radius-pill);padding:2px var(--space-2);white-space:nowrap}
+  .badge--today{background:var(--c-primary-600);color:#fff}
+  .badge--state{background:var(--c-neutral-100);color:var(--c-neutral-700)}
+  .day-card[aria-pressed="true"] .badge--state{background:var(--c-success-bg);color:var(--c-success)}
+  .voters{display:flex;flex-wrap:wrap;gap:var(--space-1);flex:1;align-content:flex-start}
+  .chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;background:var(--c-neutral-100);color:var(--c-neutral-700);border:0;border-radius:var(--radius-pill);padding:2px var(--space-2) 2px 2px;font-size:var(--fs-xs);line-height:1.6}
+  .chip:hover{background:#fee2e2;color:var(--c-danger)}
+  .chip--me{background:var(--c-primary-100);color:var(--c-primary-900);font-weight:600}
+  .chip--me:hover{background:#fee2e2;color:var(--c-danger)}
+  .chip__x{font-size:11px;opacity:.6}
+  .day-card__foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
+  .day-card__count{font-size:var(--fs-xs);color:var(--c-neutral-700);font-weight:600}
+  .add-btn{background:none;border:1px dashed var(--c-primary-500);color:var(--c-primary-700);border-radius:var(--radius-pill);font-size:var(--fs-xs);font-weight:600;padding:2px var(--space-2);min-height:30px}
+  .add-btn:hover{background:var(--c-primary-50)}
+  .empty-voters{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-3);background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-sm);margin-top:var(--space-4)}
+  .stat__label{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+  .stat__value{font-size:var(--fs-lg);font-weight:700;margin-top:var(--space-1);word-break:break-word}
+
+  .card{background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-sm)}
+  .venue-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4)}
+  #map{width:100%;height:320px;border-radius:var(--radius-md);border:1px solid var(--c-neutral-200);background:var(--c-neutral-100)}
+  .search{position:relative;margin-bottom:var(--space-3)}
+  .search__row{display:flex;gap:var(--space-2)}
+  .search__results{position:absolute;z-index:20;left:0;right:0;top:calc(100% + var(--space-1));background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);box-shadow:var(--shadow-md);max-height:240px;overflow:auto}
+  .search__results button{display:block;width:100%;text-align:left;padding:var(--space-3);border:0;border-bottom:1px solid var(--c-neutral-100);background:transparent}
+  .search__results button:last-child{border-bottom:0}
+  .search__results button:hover{background:var(--c-primary-50)}
+  .search__title{font-weight:600;font-size:var(--fs-sm)}
+  .search__addr{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+  .search__quick{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-3)}
+  .search__quick button{background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-pill);padding:var(--space-1) var(--space-3);font-size:var(--fs-xs);color:var(--c-primary-700)}
+  .search__quick button:hover{background:var(--c-primary-50)}
+  .search__hint{font-size:var(--fs-xs);color:var(--c-neutral-500);margin:var(--space-1) 0 0}
+  .form-grid{display:grid;grid-template-columns:1fr;gap:var(--space-3);margin-top:var(--space-4)}
+  .field label{display:block;font-size:var(--fs-sm);font-weight:600;margin-bottom:var(--space-1)}
+  textarea.input{min-height:64px;resize:vertical}
+  .form-actions{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-4)}
+  details{margin-top:var(--space-3);font-size:var(--fs-sm)}
+  summary{cursor:pointer;color:var(--c-neutral-700)}
+  .coords{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);margin-top:var(--space-2)}
+  .venue-list{display:grid;grid-template-columns:1fr;gap:var(--space-3);margin-top:var(--space-4)}
+  .venue-item{border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);padding:var(--space-4);background:var(--c-neutral-0)}
+  .venue-item--active{border-color:var(--c-primary-500);background:var(--c-primary-50)}
+  .venue-item__title{font-weight:700;font-size:var(--fs-md);display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+  .venue-item__meta{font-size:var(--fs-sm);color:var(--c-neutral-500);margin-top:var(--space-1);word-break:break-all}
+  .venue-item__actions{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-3)}
+  .map-fallback{display:none;padding:var(--space-4);border:1px dashed var(--c-warn);border-radius:var(--radius-md);background:#fffbeb;color:var(--c-neutral-700);font-size:var(--fs-sm)}
+  .map-fallback.is-visible{display:block}
+
+  .modal{position:fixed;inset:0;z-index:80;background:rgba(17,24,39,.45);display:flex;align-items:flex-end;justify-content:center}
+  .modal[hidden]{display:none}
+  .modal__panel{background:var(--c-neutral-0);width:100%;max-width:520px;max-height:86vh;overflow:auto;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:var(--space-5);box-shadow:var(--shadow-md)}
+  .modal__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-3)}
+  .modal__head h3{margin:0;font-size:var(--fs-lg)}
+  .modal__close{background:none;border:0;font-size:24px;line-height:1;color:var(--c-neutral-500);min-width:44px;min-height:44px}
+  .modal__list{display:grid;gap:var(--space-2)}
+  .voter-row{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2);border:1px solid var(--c-neutral-200);border-radius:var(--radius-sm)}
+  .voter-row__name{flex:1;font-size:var(--fs-sm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .voter-row__actions{display:flex;gap:var(--space-1)}
+  .modal__new{display:flex;gap:var(--space-2);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px dashed var(--c-neutral-200)}
+  .modal__new .input{flex:1;min-width:0}
+
+  .toast{position:fixed;left:50%;bottom:var(--space-5);transform:translate(-50%,16px);background:var(--c-neutral-900);color:#fff;padding:var(--space-3) var(--space-5);border-radius:var(--radius-pill);font-size:var(--fs-sm);box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:100;max-width:calc(100vw - 32px);text-align:center}
+  .toast.is-visible{opacity:1;transform:translate(-50%,0)}
+  footer{color:var(--c-neutral-500);font-size:var(--fs-xs);text-align:center;padding:var(--space-6) var(--space-4) var(--space-10)}
+
+  @media (min-width:768px){
+    .wrap{padding:var(--space-6)}
+    #map{height:380px}
+    .venue-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
+    .form-grid{grid-template-columns:1fr 1fr}
+    .form-grid .field--full{grid-column:1 / -1}
+    .modal{align-items:center}
+    .modal__panel{border-radius:var(--radius-lg)}
+  }
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+<!-- 腾讯地图：代理模式，前端不承载密钥；必须在 SDK 加载前配置 -->
+<script type="text/javascript">
+  window._TMapSecurityConfig = {
+    serviceHost: 'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__',
+  };
+</script>
+<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service" onerror="window.__tmapFailed=true"></script>
+</head>
+<body data-page-node-id="mFwLVHYv3AHwJlq1eMSoqE">
+<div class="wrap" data-page-node-id="Tnmv3EYfwUBEwsImw2eo8F">
+  <header class="hero" data-page-node-id="oBScTgJAxNygwLGfw3yTn6">
+    <div class="hero__top" data-page-node-id="Z1ff0uGBbPwbyeeFgGkrdi">
+      <div data-page-node-id="PKC3O9YnKAQgvqb1jahhS6">
+        <h1 data-page-node-id="2omx4g7QZEtHnwgosPdM2o">约球投票</h1>
+        <p class="hero__sub" data-page-node-id="TAn4c2mMg9i50Bu0BPoi7t">自动读取登录身份 · 无需输入 · 所有人都能编辑 · 日期每天更新</p>
+      </div>
+      <span class="range" id="range" data-page-node-id="q4YoYU4lMbhSZuSsFkw1Pz">—</span>
+    </div>
+    <div class="me-card" data-page-node-id="wybLpb6QF3lQVd6lAXojZM">
+      <div class="me-card__left" data-page-node-id="yIwEMAu8Awmk0nec3KrYhR">
+        <span class="avatar avatar--lg" id="myAvatar" aria-label="我的头像" data-page-node-id="ZLGojRYbE88i5A7l0R2Iqk">球</span>
+        <div data-page-node-id="x5znw6qZsyCYwG5zJSKdEG">
+          <div class="me-card__label" data-page-node-id="TGPqSSNR6EA10WN10l99CH">我的身份（自动读取登录信息）</div>
+          <button class="me-name" id="myName" type="button" aria-label="点击修改我的昵称" data-page-node-id="lX5h5Gw3b7sTjaMgqJLrlS"><span id="myNameText" data-page-node-id="nw8t9dPlnaKyYqPQQdZX2G"></span> ✎</button>
+        </div>
+      </div>
+      <div class="me-card__hint" data-page-node-id="hMxF4R50pXzMdoGAEg4Kac">点昵称可修改 · 头像用昵称首字</div>
+    </div>
+    <p class="notice" data-page-node-id="FSVtHJQqFDhbxMDzNtYBGW">当前为本机模式：同一台设备的人都能编辑；发到微信群后，每台手机的数据各自独立，看不到彼此的实时投票。可到页面底部复制 / 导入数据手动合并。</p>
+  </header>
+
+  <main data-page-node-id="zEA7hX6dVFgIdo9fV9RG2B">
+    <section class="section" aria-labelledby="daysTitle" data-page-node-id="0Gk8cm6UWtAHY4HHDaJzd7">
+      <div class="section__head" data-page-node-id="cfJe8dE4N2MznVGZ7LGiGX">
+        <h2 id="daysTitle" data-page-node-id="9T2QgFJXX6KCzYLEO0dEPP">选日期</h2>
+        <span class="section__note" data-page-node-id="YDUF5pJNoB73gfIDUin3qL">点卡片为自己报名 · 点名字移除任何人 · 点「替人报名」添加他人</span>
+      </div>
+      <div class="days" id="days" data-page-node-id="C0dztSmTRZxcrKjtdzMqsZ"></div>
+      <div class="summary" id="summary" aria-live="polite" data-page-node-id="d1FHz3iwDhpfbcn65deYBN"></div>
+    </section>
+
+    <section class="section" aria-labelledby="venueTitle" data-page-node-id="327niTBueNZHiI44ApHL4q">
+      <div class="section__head" data-page-node-id="eT9GPu94dRstM2yyY7A0kS">
+        <h2 id="venueTitle" data-page-node-id="mWAceT8T2FOE7UiyS4fuk2">打球地点</h2>
+        <span class="section__note" data-page-node-id="neKf5gWPLZaMhVAGc7LpTX">搜索地点，或在地图上点击选点后保存；所有人可编辑</span>
+      </div>
+      <div class="venue-grid" data-page-node-id="0mujb70c1QXPskGg2eM2qU">
+        <div class="card" data-page-node-id="z9M1vrHadPcAjD1QBtddYK">
+          <div class="search" data-page-node-id="NUJ5ZDkXslHs0zWFP1hgNA">
+            <div class="search__row" data-page-node-id="cZIscQ16dhKUbVyvyWL2Wn">
+              <input class="input" id="placeSearch" type="search" placeholder="搜索北京的球馆、公园、学校…" aria-label="搜索地点" data-page-node-id="QjEU3GZEk6LDovhONGtX6E">
+              <button class="btn btn--secondary" id="searchBtn" type="button" data-page-node-id="xCTTY7ptj22CohzPZRZc3g">搜索</button>
+            </div>
+            <div class="search__quick" id="searchQuick" aria-label="热门搜索">
+              <button type="button" data-kw="羽毛球馆">羽毛球馆</button>
+              <button type="button" data-kw="体育馆">体育馆</button>
+              <button type="button" data-kw="公园">公园</button>
+              <button type="button" data-kw="学校">学校</button>
+            </div>
+            <p class="search__hint">默认定位北京，搜索以地图中心为参考；点结果即可选点。</p>
+            <div class="search__results" id="searchResults" hidden data-page-node-id="wgSoe5VmEjSl2VsE1g5GJR"></div>
+          </div>
+          <div id="map" role="application" aria-label="地图选点：点击地图设置打球地点" data-page-node-id="NNfsgsQr9NNTv9uuYG0bou"></div>
+          <div class="map-fallback" id="mapFallback" data-page-node-id="EIyEwOH9IU2O4KchuE5NPC">地图暂时无法加载，可在下方“手动输入坐标”填写经纬度后保存地点。</div>
+          <div class="form-grid" data-page-node-id="VEiLFjYf8Igi6DRTAt7uZm">
+            <div class="field" data-page-node-id="bHFZtYqD6KtHrrfceTSLwb">
+              <label for="venueName" data-page-node-id="WPCMM9uCBK7Jg0IkkshjaS">场地名称</label>
+              <input class="input" id="venueName" type="text" maxlength="40" placeholder="例如：滨江体育馆 2 号场" data-page-node-id="tTunhkoadjnCjRhdOCOD82">
+            </div>
+            <div class="field" data-page-node-id="PDrhT0qBf1XLIeA3wNEM2H">
+              <label for="venueAddress" data-page-node-id="PDxsl250H0NBUxIIqhijaJ">地址</label>
+              <input class="input" id="venueAddress" type="text" maxlength="120" placeholder="选点后自动填入，可修改" data-page-node-id="NxkqRpZmjQFWGEvq6cyPYI">
+            </div>
+            <div class="field field--full" data-page-node-id="OqhBu5NKjXeCD74FPiMgLl">
+              <label for="venueNote" data-page-node-id="xIwlTfT3ECXpYnE2HhVRyv">备注（可选）</label>
+              <textarea class="input" id="venueNote" maxlength="200" placeholder="例如：周六下午 3 点，进门左手边"></textarea>
+            </div>
+          </div>
+          <details data-page-node-id="y4n0FzaWjRMMMOFoiNqAPP">
+            <summary data-page-node-id="QrOPzbxzkDxy06z8ziEEnC">手动输入坐标（GCJ-02 / 腾讯地图坐标系）</summary>
+            <div class="coords" data-page-node-id="MzUN4i9RKbS5Wtx5jc5hrh">
+              <input class="input" id="latInput" type="number" step="0.000001" placeholder="纬度 如 39.904200" aria-label="纬度" data-page-node-id="0Q92tA7myC7IxM74Jspsn2">
+              <input class="input" id="lngInput" type="number" step="0.000001" placeholder="经度 如 116.407400" aria-label="经度" data-page-node-id="d8gnAO5TjDmcEyz9zfvGwR">
+            </div>
+          </details>
+          <div class="form-actions" data-page-node-id="lZyKs2udKhrpMKEsstqVr9">
+            <button class="btn" id="saveVenue" type="button" data-page-node-id="ebuwTHTGj64Wbdv9uxzNQY">保存地点</button>
+            <button class="btn btn--secondary" id="cancelEditVenue" type="button" hidden data-page-node-id="J7JonQDyHGXIT51w1PokOz">取消编辑</button>
+            <button class="btn btn--secondary" id="clearPick" type="button" data-page-node-id="WOxa7JQ9qnZkH4JXzlx81h">清除选点</button>
+          </div>
+        </div>
+        <div data-page-node-id="8nIPMfxP4aBuCyiPyxEoKq">
+          <div class="card" data-page-node-id="y1GBMdl4rvlfDYuUxTi6E4">
+            <h3 style="font-size:var(--fs-md);margin:0 0 var(--space-3)" data-page-node-id="CGAxqbNBt7urw7DtD0bHN7">已保存的地点</h3>
+            <div class="venue-list" id="venueList" data-page-node-id="k6OdpiZ9nZajpwhZYS3dYC"></div>
+            <p class="hint" id="venueEmpty" data-page-node-id="XM9teQYsZOaFlHRKVLsdXc">还没有保存地点。先在地图上选点，再填写名称并保存。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="shareTitle" data-page-node-id="agNVwWHR0xGx3psU1AUcWt">
+      <div class="section__head" data-page-node-id="n24Kr49H5wM5A6HXx4nfbw">
+        <h2 id="shareTitle" data-page-node-id="KoNu0EIjTpb2L3jVUOxS7m">结果分享</h2>
+        <span class="section__note" data-page-node-id="cAuzZxHNQBx10wMGNqBVY0">本机模式下，可复制数据发给朋友，对方导入后即可查看</span>
+      </div>
+      <div class="card" data-page-node-id="jgv7OWGnJcfdfNe4k3NXKp">
+        <div class="form-actions" style="margin-top:0" data-page-node-id="WsYnkt1D3JILxVGpKiIze1">
+          <button class="btn btn--secondary" id="exportData" type="button" data-page-node-id="WkF61flteZVtCQSenAp8xu">复制投票数据</button>
+          <button class="btn btn--secondary" id="importData" type="button" data-page-node-id="2b5yZwvfe1OmyYXCIVeSna">导入投票数据</button>
+        </div>
+        <p class="hint" data-page-node-id="tj4fsXhGlF878CGKrKltam">导入会合并对方的投票人、报名与地点（按 ID 去重），不会覆盖本机已有数据。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer data-page-node-id="3WO3kaQx5ACYtRouFjqE2z">微信群使用场景下，如需所有人实时看到同一份结果，需要接入共享后端（微信授权身份 + 云数据库）。</footer>
+</div>
+
+<div class="modal" id="voterModal" hidden data-page-node-id="IEkBXxSLEclprV8YqkuCoe">
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-page-node-id="uKWGVXvXRJsfydfohq3ONS">
+    <div class="modal__head" data-page-node-id="pKY6ZlT8cXLdZV7c4WcKH2">
+      <h3 id="modalTitle" data-page-node-id="m0230ETAvrDie6TMV9wAvb">替人报名</h3>
+      <button class="modal__close" id="modalClose" type="button" aria-label="关闭" data-page-node-id="Zst8WM2iMZIRwmkumO0WUj">✕</button>
+    </div>
+    <div class="modal__list" id="modalList" data-page-node-id="IcMSZtEnsiydBMMvSchpgA"></div>
+    <div class="modal__new" data-page-node-id="hHwJhgnGmFDfs8lWXY41A2">
+      <input class="input" id="newVoterName" type="text" maxlength="24" placeholder="新投票人昵称" data-page-node-id="UKoPUc90Y8AFHelxqIaBEZ">
+      <button class="btn" id="addNewVoter" type="button" data-page-node-id="1qdHqGmoihlc1PkOJqOxeq">添加并报名</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" data-page-node-id="t1gEnfTaNLjuOYEDlwxRe7"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = { me: 'badminton.me', voters: 'badminton.voters', votes: 'badminton.votes', venues: 'badminton.venues', active: 'badminton.venue.active' };
+  var WEEK = ['周日','周一','周二','周三','周四','周五','周六'];
+  var BEIJING = { lat: 39.904200, lng: 116.407400 };
+  var state = { me: null, voters: {}, votes: {}, venues: [], activeId: '' };
+  var $ = function (s) { return document.querySelector(s); };
+  var uid = function () { return 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); };
+
+  function read(key, fallback) {
+    try { var v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); }
+    catch (e) { return fallback; }
+  }
+  function write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { toast('本地存储不可用，数据仅本次有效'); } }
+  function persist() {
+    write(KEY.me, state.me); write(KEY.voters, state.voters); write(KEY.votes, state.votes);
+    write(KEY.venues, state.venues); write(KEY.active, state.activeId);
+  }
+  function hash(str) { var h = 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); }
+  function initialOf(name) { var s = String(name || '').trim(); return s ? s.charAt(0).toUpperCase() : '球'; }
+  // 读取登录人信息：宿主注入变量 / URL 参数（微信内 H5 无法静默获取头像昵称，故做多源探测 + 兜底）
+  function detectLoginProfile() {
+    var u = null, keys = ['__USER__','__user__','USER','userInfo','__USER_INFO__','__LOGIN_USER__','__profile__','currentUser','__WORKBUDDY_USER__'];
+    for (var i = 0; i < keys.length; i++) {
+      var v = window[keys[i]];
+      if (v && typeof v === 'object' && (v.name || v.nickname || v.nickName || v.avatar || v.avatarUrl || v.headImgUrl)) { u = v; break; }
+    }
+    var name = u ? (u.name || u.nickname || u.nickName || '') : '';
+    var avatar = u ? (u.avatar || u.avatarUrl || u.headImgUrl || u.face || '') : '';
+    try {
+      var q = new URLSearchParams(location.search);
+      name = q.get('name') || q.get('nickname') || name;
+      avatar = q.get('avatar') || avatar;
+    } catch (e) {}
+    return { name: String(name || '').slice(0, 24), avatar: String(avatar || '').slice(0, 500) };
+  }
+  function renderAvatar(node, v, cls) {
+    var name = (v && v.name) || '球友';
+    var url = v && v.avatar;
+    node.className = 'avatar ' + (cls || '');
+    node.replaceChildren();
+    node.textContent = initialOf(name);
+    node.setAttribute('aria-label', name + ' 的头像');
+    if (typeof url === 'string' && /^https?:\/\//i.test(url)) {
+      var img = el('img');
+      img.className = 'avatar--img'; img.style.width = '100%'; img.style.height = '100%';
+      img.alt = name; img.referrerPolicy = 'no-referrer';
+      img.onerror = function () { if (img.parentNode === node) node.removeChild(img); node.textContent = initialOf(name); };
+      img.src = url;
+      node.replaceChildren(img);
+    }
+    return node;
+  }
+  function uniqueName() {
+    var used = {}; Object.keys(state.voters).forEach(function (id) { used[state.voters[id].name] = true; });
+    var n; do { n = '球友' + (100 + Math.floor(Math.random() * 900)); } while (used[n]);
+    return n;
+  }
+  function ensureVoterByName(name) {
+    var found = null;
+    Object.keys(state.voters).forEach(function (id) { if (state.voters[id].name === name) found = state.voters[id]; });
+    if (!found) { found = { id: uid(), name: name, avatar: '' }; state.voters[found.id] = found; }
+    return found;
+  }
+  function migrate() {
+    var changed = false;
+    Object.keys(state.votes).forEach(function (k) {
+      var arr = state.votes[k];
+      if (Array.isArray(arr)) {
+        state.votes[k] = arr.map(function (x) {
+          if (typeof x === 'string') { changed = true; return ensureVoterByName(x).id; }
+          return x;
+        }).filter(function (x) { return !!x; });
+      }
+    });
+    if (changed) persist();
+  }
+  function load() {
+    state.me = read(KEY.me, null);
+    state.voters = read(KEY.voters, {}) || {};
+    state.votes = read(KEY.votes, {}) || {};
+    state.venues = read(KEY.venues, []) || [];
+    state.activeId = read(KEY.active, '') || '';
+    if (!state.voters || typeof state.voters !== 'object') state.voters = {};
+    if (!state.votes || typeof state.votes !== 'object') state.votes = {};
+    if (!Array.isArray(state.venues)) state.venues = [];
+    if (!state.me || !state.me.id) {
+      var p = detectLoginProfile();
+      var name = p.name || uniqueName();
+      state.me = { id: uid(), name: name, avatar: p.avatar || '' };
+      state.voters[state.me.id] = state.me;
+      persist();
+    } else {
+      // 已存在身份时，若宿主/链接提供了登录信息且本地仍是占位昵称，则同步更新
+      var p2 = detectLoginProfile();
+      var meVoter = state.voters[state.me.id];
+      if (p2.name && /^球友\d{3}$/.test(state.me.name)) {
+        state.me.name = p2.name; if (meVoter) meVoter.name = p2.name;
+      }
+      if (p2.avatar && !state.me.avatar) {
+        state.me.avatar = p2.avatar; if (meVoter) meVoter.avatar = p2.avatar;
+      }
+      persist();
+    }
+    if (!state.voters[state.me.id]) state.voters[state.me.id] = state.me;
+    migrate();
+  }
+
+  function dayKey(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function nextDays() {
+    var today = new Date(), out = [];
+    for (var i = 0; i < 7; i++) {
+      var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+      out.push({ key: dayKey(d), num: d.getDate(), month: d.getMonth() + 1, week: WEEK[d.getDay()], offset: i });
+    }
+    return out;
+  }
+  var days = nextDays();
+
+  var toastTimer;
+  function toast(msg) {
+    var t = $('#toast'); t.textContent = msg; t.classList.add('is-visible');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('is-visible'); }, 2600);
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function renderMe() {
+    renderAvatar($('#myAvatar'), state.me, 'avatar--lg');
+    $('#myNameText').textContent = state.me.name;
+  }
+  function renderDays() {
+    var box = $('#days'); box.replaceChildren();
+    days.forEach(function (day) {
+      var ids = Array.isArray(state.votes[day.key]) ? state.votes[day.key] : [];
+      var mine = ids.indexOf(state.me.id) !== -1;
+      var card = el('div', 'day-card');
+      card.setAttribute('role', 'button'); card.tabIndex = 0; card.dataset.key = day.key;
+      card.setAttribute('aria-pressed', mine ? 'true' : 'false');
+      card.setAttribute('aria-label', day.month + '月' + day.num + '日 ' + day.week + '，' + ids.length + '人报名，' + (mine ? '已报名，点击取消' : '点击报名'));
+
+      var top = el('div', 'day-card__top');
+      var left = el('div');
+      left.append(el('div', 'day-card__num', String(day.num)));
+      left.append(el('div', 'day-card__meta', day.month + ' 月 · ' + day.week));
+      top.append(left);
+      top.append(el('span', 'badge ' + (day.offset === 0 ? 'badge--today' : 'badge badge--state'), day.offset === 0 ? '今天' : day.offset === 1 ? '明天' : '报名'));
+
+      var list = el('div', 'voters');
+      if (!ids.length) list.append(el('span', 'empty-voters', '暂无人报名'));
+      else ids.forEach(function (id) {
+        var v = state.voters[id] || { name: '未知球友', avatar: '' };
+        var chip = el('button', 'chip' + (id === state.me.id ? ' chip--me' : ''));
+        chip.type = 'button';
+        chip.setAttribute('aria-label', '移除 ' + v.name);
+        chip.append(renderAvatar(el('span'), v, 'avatar--sm'));
+        chip.append(document.createTextNode(v.name));
+        if (id === state.me.id) chip.append(el('span', '', '(我)'));
+        chip.append(el('span', 'chip__x', '×'));
+        chip.addEventListener('click', function (e) { e.stopPropagation(); removeVoter(day.key, id); });
+        list.append(chip);
+      });
+
+      var foot = el('div', 'day-card__foot');
+      foot.append(el('span', 'day-card__count', ids.length + ' 人报名'));
+      var add = el('button', 'add-btn', '替人报名'); add.type = 'button';
+      add.setAttribute('aria-label', '为 ' + day.month + '月' + day.num + '日替人报名');
+      add.addEventListener('click', function (e) { e.stopPropagation(); openModal(day.key); });
+      foot.append(add);
+
+      card.append(top, list, foot);
+      card.addEventListener('click', function () { toggleVote(day.key); });
+      card.addEventListener('keydown', function (e) {
+        if (e.target !== card) return;
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleVote(day.key); }
+      });
+      box.append(card);
+    });
+    $('#range').textContent = days[0].month + '月' + days[0].num + '日 — ' + days[6].month + '月' + days[6].num + '日';
+  }
+  function renderSummary() {
+    var total = 0, top = null, topCount = 0;
+    days.forEach(function (day) {
+      var n = (state.votes[day.key] || []).length;
+      total += n;
+      if (n > topCount) { topCount = n; top = day; }
+    });
+    var active = state.venues.filter(function (v) { return v.id === state.activeId; })[0];
+    var s = $('#summary'); s.replaceChildren();
+    function stat(label, value) {
+      var d = el('div', 'stat'); d.append(el('div', 'stat__label', label), el('div', 'stat__value', value)); return d;
+    }
+    s.append(
+      stat('报名人次', total + ' 人次'),
+      stat('最热门日期', top && topCount ? top.month + '/' + top.num + ' ' + top.week + '（' + topCount + ' 人）' : '暂无'),
+      stat('约定地点', active ? active.name : '待定')
+    );
+  }
+  function toggleVote(key) {
+    var list = (state.votes[key] || []).slice();
+    var i = list.indexOf(state.me.id);
+    if (i === -1) { list.push(state.me.id); toast('报名成功'); }
+    else { list.splice(i, 1); toast('已取消报名'); }
+    state.votes[key] = list; persist(); renderDays(); renderSummary();
+  }
+  function removeVoter(key, id) {
+    var v = state.voters[id];
+    state.votes[key] = (state.votes[key] || []).filter(function (x) { return x !== id; });
+    persist(); renderDays(); renderSummary(); toast('已移除 ' + (v ? v.name : '该球友'));
+  }
+
+  var modalKey = null;
+  function openModal(key) {
+    modalKey = key;
+    var day = days.filter(function (d) { return d.key === key; })[0];
+    $('#modalTitle').textContent = '替人报名 · ' + (day ? day.month + '月' + day.num + '日 ' + day.week : '');
+    $('#voterModal').hidden = false;
+    renderModalList();
+    $('#newVoterName').focus();
+  }
+  function closeModal() { $('#voterModal').hidden = true; modalKey = null; }
+  function renderModalList() {
+    var box = $('#modalList'); box.replaceChildren();
+    var ids = Object.keys(state.voters);
+    if (!ids.length) box.append(el('p', 'hint', '还没有投票人'));
+    ids.forEach(function (id) {
+      var v = state.voters[id];
+      var checked = (state.votes[modalKey] || []).indexOf(id) !== -1;
+      var row = el('div', 'voter-row');
+      row.append(renderAvatar(el('span'), v));
+      row.append(el('span', 'voter-row__name', v.name + (id === state.me.id ? '（我）' : '')));
+      var acts = el('div', 'voter-row__actions');
+      var toggle = el('button', 'btn btn--secondary btn--sm', checked ? '取消报名' : '报名'); toggle.type = 'button';
+      toggle.addEventListener('click', function () {
+        var list = (state.votes[modalKey] || []).slice();
+        var i = list.indexOf(id);
+        if (i === -1) list.push(id); else list.splice(i, 1);
+        state.votes[modalKey] = list; persist(); renderModalList(); renderDays(); renderSummary();
+      });
+      acts.append(toggle);
+      if (id !== state.me.id) {
+        var ren = el('button', 'btn btn--secondary btn--sm', '改名'); ren.type = 'button';
+        ren.addEventListener('click', function () {
+          var n = window.prompt('修改昵称：', v.name);
+          if (n && n.trim()) { v.name = n.trim().slice(0, 24); persist(); renderModalList(); renderDays(); toast('昵称已更新'); }
+        });
+        acts.append(ren);
+        var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
+        del.addEventListener('click', function () {
+          if (!window.confirm('删除投票人「' + v.name + '」？')) return;
+          delete state.voters[id];
+          Object.keys(state.votes).forEach(function (k) { state.votes[k] = (state.votes[k] || []).filter(function (x) { return x !== id; }); });
+          persist(); renderModalList(); renderDays(); renderSummary(); toast('投票人已删除');
+        });
+        acts.append(del);
+      }
+      row.append(acts); box.append(row);
+    });
+  }
+  function addNewVoter() {
+    var n = $('#newVoterName').value.trim();
+    if (!n) { toast('请输入昵称'); return; }
+    var v = ensureVoterByName(n.slice(0, 24));
+    var list = (state.votes[modalKey] || []).slice();
+    if (list.indexOf(v.id) === -1) list.push(v.id);
+    state.votes[modalKey] = list;
+    $('#newVoterName').value = '';
+    persist(); renderModalList(); renderDays(); renderSummary(); toast('已添加 ' + v.name);
+  }
+
+  function renderVenues() {
+    var box = $('#venueList'); box.replaceChildren();
+    $('#venueEmpty').hidden = state.venues.length > 0;
+    state.venues.forEach(function (v) {
+      var item = el('div', 'venue-item' + (v.id === state.activeId ? ' venue-item--active' : ''));
+      var title = el('div', 'venue-item__title'); title.append(document.createTextNode(v.name || '未命名地点'));
+      if (v.id === state.activeId) title.append(el('span', 'badge badge--today', '约定地点'));
+      item.append(title);
+      item.append(el('div', 'venue-item__meta', (v.address || '未填写地址') + ' · ' + Number(v.lat).toFixed(5) + ', ' + Number(v.lng).toFixed(5)));
+      if (v.note) item.append(el('div', 'venue-item__meta', '备注：' + v.note));
+      var by = typeof v.createdBy === 'object' && v.createdBy ? v.createdBy.name : (v.createdBy || '匿名');
+      item.append(el('div', 'venue-item__meta', '由 ' + by + ' 添加'));
+      var actions = el('div', 'venue-item__actions');
+      var locate = el('button', 'btn btn--secondary btn--sm', '在地图查看'); locate.type = 'button';
+      locate.addEventListener('click', function () {
+        if (map) { var p = new TMap.LatLng(v.lat, v.lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+        $('#latInput').value = v.lat; $('#lngInput').value = v.lng;
+      });
+      actions.append(locate);
+      var edit = el('button', 'btn btn--secondary btn--sm', '编辑'); edit.type = 'button';
+      edit.addEventListener('click', function () { fillVenueForm(v); toast('已载入编辑，修改后点「保存修改」'); });
+      actions.append(edit);
+      if (v.id !== state.activeId) {
+        var set = el('button', 'btn btn--secondary btn--sm', '设为约定地点'); set.type = 'button';
+        set.addEventListener('click', function () { state.activeId = v.id; persist(); renderVenues(); renderSummary(); toast('已设为约定地点'); });
+        actions.append(set);
+      }
+      var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
+      del.addEventListener('click', function () {
+        if (!window.confirm('确定删除「' + (v.name || '未命名地点') + '」？')) return;
+        state.venues = state.venues.filter(function (x) { return x.id !== v.id; });
+        if (state.activeId === v.id) state.activeId = '';
+        if (editingVenueId === v.id) resetVenueForm();
+        persist(); renderVenues(); renderSummary(); toast('地点已删除');
+      });
+      actions.append(del); item.append(actions); box.append(item);
+    });
+  }
+
+  /* ---------- 地图 ---------- */
+  var map = null, marker = null, geocoder = null, suggestion = null;
+  var PIN = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 34 44">' +
+    '<path d="M17 1C8.7 1 2 7.7 2 16c0 11 15 27 15 27s15-16 15-27C32 7.7 25.3 1 17 1z" fill="#1D4ED8" stroke="#ffffff" stroke-width="2"/>' +
+    '<circle cx="17" cy="16" r="6" fill="#ffffff"/></svg>');
+  function setMarker(latlng) {
+    if (!map) return;
+    if (!marker) {
+      marker = new TMap.MultiMarker({ map: map, styles: { pin: new TMap.MarkerStyle({ width: 34, height: 44, anchor: { x: 17, y: 44 }, src: PIN }) }, geometries: [] });
+    }
+    marker.setGeometries([{ id: 'venue', styleId: 'pin', position: latlng }]);
+    $('#latInput').value = latlng.getLat().toFixed(6);
+    $('#lngInput').value = latlng.getLng().toFixed(6);
+  }
+  function reverseGeocode(latlng) {
+    if (!geocoder) return;
+    geocoder.getAddress({ location: latlng, getPoi: false }).then(function (res) {
+      if (res.status !== 0 || !res.result) return;
+      var r = res.result;
+      var pretty = (r.formatted_addresses && r.formatted_addresses.recommend) || r.address || '';
+      $('#venueAddress').value = pretty;
+      if (!$('#venueName').value && pretty) $('#venueName').value = pretty.replace(/^.*?(省|市|区|县)/, '').slice(0, 24) || pretty.slice(0, 24);
+    }).catch(function () {});
+  }
+  function initMap() {
+    if (window.__tmapFailed || typeof TMap === 'undefined') { $('#mapFallback').classList.add('is-visible'); return; }
+    try {
+      map = new TMap.Map('map', { zoom: 12, center: new TMap.LatLng(BEIJING.lat, BEIJING.lng) });
+      geocoder = new TMap.service.Geocoder();
+      suggestion = new TMap.service.Suggestion({ pageSize: 6 });
+      map.on('click', function (evt) { setMarker(evt.latLng); reverseGeocode(evt.latLng); });
+    } catch (e) { map = null; $('#mapFallback').classList.add('is-visible'); }
+  }
+  // 北京常用球馆（GCJ-02 近似坐标）：地图服务不可用时仍能搜索选点
+  var BEIJING_VENUES = [
+    { title: '国家体育总局训练局体育馆', address: '北京市东城区体育馆路2号', lat: 39.87620, lng: 116.41830 },
+    { title: '首都体育馆', address: '北京市海淀区白石桥路54号', lat: 39.92050, lng: 116.30700 },
+    { title: '北京科技大学体育馆', address: '北京市海淀区学院路30号', lat: 39.94680, lng: 116.35260 },
+    { title: '北京工业大学体育馆', address: '北京市朝阳区平乐园100号', lat: 39.87940, lng: 116.46240 },
+    { title: '北京大学体育馆', address: '北京市海淀区颐和园路5号', lat: 39.97610, lng: 116.31030 },
+    { title: '清华大学综合体育馆', address: '北京市海淀区清华园街道双清路', lat: 40.00100, lng: 116.32600 },
+    { title: '北京航空航天大学体育馆', address: '北京市海淀区学院路37号', lat: 39.97830, lng: 116.34550 },
+    { title: '北京师范大学体育馆', address: '北京市海淀区新街口外大街19号', lat: 39.95830, lng: 116.36000 },
+    { title: '北京展览馆剧场体育馆', address: '北京市西城区西直门外大街135号', lat: 39.94540, lng: 116.33500 },
+    { title: '奥体中心体育馆', address: '北京市朝阳区安定路甲3号', lat: 39.98870, lng: 116.39080 },
+    { title: '五棵松体育馆', address: '北京市海淀区复兴路69号', lat: 39.90680, lng: 116.27870 },
+    { title: '北京理工大学体育馆', address: '北京市海淀区中关村南大街5号', lat: 39.95110, lng: 116.32230 },
+    { title: '北京邮电大学体育馆', address: '北京市海淀区西土城路10号', lat: 39.96630, lng: 116.35740 },
+    { title: '朝阳公园', address: '北京市朝阳区朝阳公园南路1号', lat: 39.93890, lng: 116.47380 },
+    { title: '奥林匹克森林公园', address: '北京市朝阳区科荟路33号', lat: 40.01770, lng: 116.38920 },
+    { title: '北京工人体育馆', address: '北京市朝阳区三里屯工人体育场北路', lat: 39.93090, lng: 116.45340 }
+  ];
+  function localSearch(kw) {
+    var lower = kw.toLowerCase();
+    return BEIJING_VENUES.filter(function (v) {
+      return (v.title + v.address).toLowerCase().indexOf(lower) !== -1;
+    }).map(function (v) {
+      return { title: v.title, address: v.address, lat: v.lat, lng: v.lng };
+    });
+  }
+  function showSearchResults(items, isLocal) {
+    var box = $('#searchResults'); box.replaceChildren();
+    if (!items || !items.length) { box.hidden = true; toast('没有找到相关地点，可试试「体育馆」或手动输入坐标'); return; }
+    if (isLocal) box.append(el('div', 'search__addr', '北京常用地点（离线结果，坐标为近似值，请到场前核实）'));
+    items.forEach(function (it) {
+      var b = el('button'); b.type = 'button';
+      var lat = typeof it.lat === 'number' ? it.lat : it.location.getLat();
+      var lng = typeof it.lng === 'number' ? it.lng : it.location.getLng();
+      b.append(el('div', 'search__title', it.title || '未命名地点'));
+      b.append(el('div', 'search__addr', (it.address || '') + ' · ' + lat.toFixed(5) + ', ' + lng.toFixed(5)));
+      b.addEventListener('click', function () {
+        box.hidden = true;
+        if (map) { var p = new TMap.LatLng(lat, lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+        $('#latInput').value = lat.toFixed(6); $('#lngInput').value = lng.toFixed(6);
+        $('#venueName').value = it.title || '';
+        $('#venueAddress').value = it.address || '';
+        toast('已选点，填好名称和备注后点保存地点');
+      });
+      box.append(b);
+    });
+    box.hidden = false;
+  }
+  function searchPlace() {
+    var kw = $('#placeSearch').value.trim();
+    if (!kw) { toast('请输入搜索关键词'); return; }
+    if (!suggestion) { showSearchResults(localSearch(kw), true); return; }
+    suggestion.getSuggestions({ keyword: kw, location: map ? map.getCenter() : new TMap.LatLng(BEIJING.lat, BEIJING.lng) })
+      .then(function (res) {
+        var data = res.status === 0 ? res.data : [];
+        if (data && data.length) showSearchResults(data, false);
+        else showSearchResults(localSearch(kw), true);
+      })
+      .catch(function () { showSearchResults(localSearch(kw), true); });
+  }
+  var editingVenueId = null;
+  function fillVenueForm(v) {
+    editingVenueId = v.id;
+    $('#venueName').value = v.name || '';
+    $('#venueAddress').value = v.address || '';
+    $('#venueNote').value = v.note || '';
+    $('#latInput').value = v.lat; $('#lngInput').value = v.lng;
+    $('#saveVenue').textContent = '保存修改';
+    $('#cancelEditVenue').hidden = false;
+    if (map) { var p = new TMap.LatLng(v.lat, v.lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+  }
+  function resetVenueForm() {
+    editingVenueId = null;
+    $('#venueName').value = ''; $('#venueAddress').value = ''; $('#venueNote').value = '';
+    $('#latInput').value = ''; $('#lngInput').value = '';
+    $('#saveVenue').textContent = '保存地点';
+    $('#cancelEditVenue').hidden = true;
+  }
+  function saveVenue() {
+    var name = $('#venueName').value.trim();
+    var lat = parseFloat($('#latInput').value), lng = parseFloat($('#lngInput').value);
+    if (!name) { toast('请填写场地名称'); $('#venueName').focus(); return; }
+    if (!isFinite(lat) || !isFinite(lng)) { toast('请在地图上选点，或手动填写经纬度'); return; }
+    var fields = { name: name, address: $('#venueAddress').value.trim(), note: $('#venueNote').value.trim(), lat: lat, lng: lng };
+    if (editingVenueId) {
+      var v = state.venues.filter(function (x) { return x.id === editingVenueId; })[0];
+      if (v) { Object.keys(fields).forEach(function (k) { v[k] = fields[k]; }); v.updatedBy = state.me.id; }
+      toast('地点已更新');
+    } else {
+      state.venues.push({ id: 'v' + Date.now().toString(36), name: fields.name, address: fields.address, note: fields.note, lat: fields.lat, lng: fields.lng, createdBy: state.me.id, createdAt: new Date().toISOString() });
+      state.activeId = state.venues[state.venues.length - 1].id;
+      toast('地点已保存，并设为约定地点');
+    }
+    resetVenueForm(); persist(); renderVenues(); renderSummary();
+  }
+
+  /* ---------- 事件 ---------- */
+  $('#myName').addEventListener('click', function () {
+    var n = window.prompt('修改我的昵称：', state.me.name);
+    if (n && n.trim()) {
+      state.me.name = n.trim().slice(0, 24); state.voters[state.me.id].name = state.me.name;
+      persist(); renderMe(); renderDays(); renderVenues(); toast('昵称已更新');
+    }
+  });
+  $('#modalClose').addEventListener('click', closeModal);
+  $('#voterModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+  $('#addNewVoter').addEventListener('click', addNewVoter);
+  $('#newVoterName').addEventListener('keydown', function (e) { if (e.key === 'Enter') addNewVoter(); });
+  $('#searchBtn').addEventListener('click', searchPlace);
+  $('#placeSearch').addEventListener('keydown', function (e) { if (e.key === 'Enter') searchPlace(); });
+  $('#searchQuick').addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-kw]'); if (!btn) return;
+    $('#placeSearch').value = btn.dataset.kw; searchPlace();
+  });
+  $('#saveVenue').addEventListener('click', saveVenue);
+  $('#cancelEditVenue').addEventListener('click', function () { resetVenueForm(); toast('已取消编辑'); });
+  $('#clearPick').addEventListener('click', function () {
+    if (marker) { marker.setGeometries([]); marker = null; }
+    resetVenueForm(); toast('已清除选点');
+  });
+  $('#exportData').addEventListener('click', function () {
+    var payload = JSON.stringify({ voters: state.voters, votes: state.votes, venues: state.venues, activeId: state.activeId });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(payload).then(function () { toast('投票数据已复制，可发给朋友导入'); })
+        .catch(function () { window.prompt('复制下面的数据：', payload); });
+    } else { window.prompt('复制下面的数据：', payload); }
+  });
+  $('#importData').addEventListener('click', function () {
+    var raw = window.prompt('粘贴从朋友处复制的投票数据：');
+    if (!raw) return;
+    try {
+      var data = JSON.parse(raw);
+      if (!data || typeof data !== 'object') throw new Error('bad');
+      Object.keys(data.voters || {}).forEach(function (id) {
+        var v = data.voters[id];
+        if (v && id && !state.voters[id]) state.voters[id] = v;
+      });
+      Object.keys(data.votes || {}).forEach(function (k) {
+        var current = Array.isArray(state.votes[k]) ? state.votes[k].slice() : [];
+        (Array.isArray(data.votes[k]) ? data.votes[k] : []).forEach(function (id) {
+          if (typeof id === 'string' && current.indexOf(id) === -1) current.push(id);
+        });
+        state.votes[k] = current;
+      });
+      migrate();
+      (data.venues || []).forEach(function (v) {
+        if (v && v.id && !state.venues.some(function (x) { return x.id === v.id; })) state.venues.push(v);
+      });
+      if (data.activeId && state.venues.some(function (x) { return x.id === data.activeId; })) state.activeId = data.activeId;
+      persist(); renderMe(); renderDays(); renderSummary(); renderVenues(); toast('已合并导入的投票数据');
+    } catch (e) { toast('数据格式不正确，导入失败'); }
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.search')) $('#searchResults').hidden = true; });
+  window.addEventListener('storage', function (e) {
+    if (!e.key || e.key.indexOf('badminton.') !== 0) return;
+    load(); renderMe(); renderDays(); renderSummary(); renderVenues();
+  });
+
+  var currentDay = dayKey(new Date());
+  function checkDate() {
+    var k = dayKey(new Date());
+    if (k === currentDay) return;
+    currentDay = k; days = nextDays(); renderDays(); renderSummary(); toast('日期已更新，已刷新未来 7 天');
+  }
+  setInterval(checkDate, 60000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) checkDate(); });
+
+  load(); renderMe(); renderDays(); renderSummary(); renderVenues();
+  window.addEventListener('load', initMap);
+})();
+</script>
+</body>
+</html>
