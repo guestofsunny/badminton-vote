@@ -129,8 +129,9 @@
         var jobs = targets.map(function (row) {
           var url = self.base() + '/' + encodeURIComponent(row.id);
           if (self.op === 'delete') return self.request(url, { method: 'DELETE', headers: { 'Content-Type': 'application/json' } });
-          var fields = {};
-          Object.keys(self.payload || {}).forEach(function (k) { fields[k] = toField(self.payload[k]); });
+          var fields = {}, mask = [];
+          Object.keys(self.payload || {}).forEach(function (k) { fields[k] = toField(self.payload[k]); mask.push('updateMask.fieldPaths=' + encodeURIComponent(k)); });
+          if (mask.length) url += '?' + mask.join('&');
           return self.request(url, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
