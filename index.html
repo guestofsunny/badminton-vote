@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<title>约球投票 · 未来 7 天</title>
+<html lang="zh-CN" data-page-node-id="LMpVBR2JNEWRMwahs7ccKU">
+<head data-page-node-id="q0ZRMxnWzDow3foVE9sr3t">
+<meta charset="utf-8" data-page-node-id="5zc5eAZlWGIOOhZTvuAfRE">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" data-page-node-id="90xEhw3qDzR7GmyU4C47HA">
+<meta name="color-scheme" content="light" data-page-node-id="HgJLpCRwsRE3cCsFw9K79G">
+<meta name="format-detection" content="telephone=no" data-page-node-id="JMrRyPaTetVzobgWNDlYJA">
+<title>约球投票 · 截止下周五</title>
 <style>
   :root{
     --c-primary-50:#eff6ff; --c-primary-100:#dbeafe; --c-primary-500:#3b82f6;
@@ -23,23 +24,25 @@
   }
   *,*::before,*::after{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{background:var(--c-neutral-50);color:var(--c-neutral-900);font-family:var(--font-sans);font-size:var(--fs-md);line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{background:var(--c-neutral-50);color:var(--c-neutral-900);font-family:var(--font-sans);font-size:var(--fs-md);line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
   button,input,textarea{font:inherit;color:inherit}
-  button{cursor:pointer}
+  input,textarea{font-size:16px} /* 微信 iOS 上防止聚焦时自动放大页面 */
+  button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   :focus-visible{outline:3px solid var(--c-primary-500);outline-offset:2px}
-  .wrap{max-width:1080px;margin:0 auto;padding:var(--space-4)}
+  .wrap{max-width:1080px;margin:0 auto;padding:var(--space-4);padding-top:calc(var(--space-4) + env(safe-area-inset-top));padding-bottom:calc(var(--space-10) + env(safe-area-inset-bottom))}
 
   .hero{background:linear-gradient(135deg,var(--c-primary-50),var(--c-neutral-0) 70%);border:1px solid var(--c-neutral-200);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm);margin-bottom:var(--space-5)}
   .hero__top{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:flex-start;justify-content:space-between}
   h1{font-size:var(--fs-2xl);line-height:1.25;margin:0 0 var(--space-1);letter-spacing:-.02em}
-  .hero__sub{margin:0;color:var(--c-neutral-500);font-size:var(--fs-sm)}
   .range{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-pill);padding:var(--space-2) var(--space-4);font-size:var(--fs-sm);font-weight:600;color:var(--c-primary-700);white-space:nowrap}
 
   .me-card{margin-top:var(--space-5);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);padding:var(--space-3)}
   .me-card__left{display:flex;align-items:center;gap:var(--space-3);min-width:0}
   .me-card__label{font-size:var(--fs-xs);color:var(--c-neutral-500)}
   .me-name{font-weight:700;font-size:var(--fs-md);color:var(--c-primary-700)}
-  .me-card__hint{font-size:var(--fs-xs);color:var(--c-neutral-500)}
+  .me-edit{display:none;width:100%;gap:var(--space-2);align-items:center;flex-wrap:wrap;margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px dashed var(--c-neutral-200)}
+  .me-edit.is-open{display:flex}
+  .me-edit .input{flex:1 1 180px;min-width:0}
   .avatar{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;font-size:13px;font-weight:700;line-height:1;flex:none;width:28px;height:28px;overflow:hidden}
   .avatar--lg{width:48px;height:48px;font-size:20px;border:2px solid var(--c-primary-100)}
   .avatar--sm{width:20px;height:20px;font-size:10px}
@@ -55,12 +58,22 @@
   .input{min-height:44px;padding:var(--space-2) var(--space-3);border:1px solid var(--c-neutral-200);border-radius:var(--radius-sm);background:var(--c-neutral-0);width:100%}
   .input:focus{border-color:var(--c-primary-500)}
   .hint{font-size:var(--fs-xs);color:var(--c-neutral-500);margin:var(--space-2) 0 0}
-  .notice{margin-top:var(--space-3);background:#fffbeb;border:1px solid #fcd34d;color:#78350f;border-radius:var(--radius-sm);padding:var(--space-2) var(--space-3);font-size:var(--fs-xs)}
+  .notice{margin-top:var(--space-3);background:#ecfdf3;border:1px solid #a7f3d0;color:#065f46;border-radius:var(--radius-sm);padding:var(--space-2) var(--space-3);font-size:var(--fs-xs)}
+  .notice--warn{background:#fffbeb;border-color:#fcd34d;color:#78350f}
+  .sync-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;margin-right:6px;vertical-align:1px}
+  .sync-dot.is-off{background:#dc2626}
 
   .section{margin-top:var(--space-8)}
   .section__head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-4);flex-wrap:wrap}
+  .section__title-group{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap}
   h2{font-size:var(--fs-xl);margin:0;letter-spacing:-.01em}
   .section__note{font-size:var(--fs-sm);color:var(--c-neutral-500)}
+  .history-list{display:grid;gap:var(--space-3)}
+  .history-card{background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);padding:var(--space-4);box-shadow:var(--shadow-sm)}
+  .history-card__head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-2)}
+  .history-card__range{font-weight:700;color:var(--c-primary-700)}
+  .history-card__venue{font-size:var(--fs-sm);color:var(--c-neutral-600)}
+  .history-card__people{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center}
   .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-3)}
   .day-card{display:flex;flex-direction:column;gap:var(--space-3);text-align:left;min-height:184px;padding:var(--space-4);background:var(--c-neutral-0);border:2px solid var(--c-neutral-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
   .day-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -73,15 +86,26 @@
   .badge--today{background:var(--c-primary-600);color:#fff}
   .badge--state{background:var(--c-neutral-100);color:var(--c-neutral-700)}
   .day-card[aria-pressed="true"] .badge--state{background:var(--c-success-bg);color:var(--c-success)}
+  .day-card.is-picked{border-color:var(--c-danger);background:#fef2f2;box-shadow:0 0 0 2px rgba(185,28,28,.12)}
+  .day-card.is-picked .badge--state{background:var(--c-danger);color:#fff}
+  .pick-bar{margin-top:var(--space-3);display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;background:#fef2f2;border:1px solid #fecaca;border-radius:var(--radius-md);padding:var(--space-3) var(--space-4)}
+  .pick-bar[hidden]{display:none}
+  .pick-bar__text{flex:1 1 320px;font-size:var(--fs-sm);font-weight:600;color:var(--c-danger)}
+  #currentGame{display:grid;gap:var(--space-3);margin-bottom:var(--space-5)}
+  #currentGame[hidden]{display:none}
+  .current-game{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;background:#fef2f2;border:1px solid #fecaca;border-left:5px solid var(--c-danger);border-radius:var(--radius-md);padding:var(--space-4);box-shadow:var(--shadow-sm)}
+  .current-game__title{font-weight:700;color:var(--c-danger)}
+  .current-game__meta{font-size:var(--fs-sm);color:var(--c-neutral-700);margin-top:var(--space-1)}
   .voters{display:flex;flex-wrap:wrap;gap:var(--space-1);flex:1;align-content:flex-start}
   .chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;background:var(--c-neutral-100);color:var(--c-neutral-700);border:0;border-radius:var(--radius-pill);padding:2px var(--space-2) 2px 2px;font-size:var(--fs-xs);line-height:1.6}
   .chip--button{cursor:pointer}
   .chip--button:hover{background:#fee2e2;color:var(--c-danger)}
   .chip--me{background:var(--c-primary-100);color:var(--c-primary-900);font-weight:600}
+  .chip--other{border:1px dashed var(--c-neutral-200)}
   .chip__x{font-size:11px;opacity:.6}
   .day-card__foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
   .day-card__count{font-size:var(--fs-xs);color:var(--c-neutral-700);font-weight:600}
-  .add-btn{background:none;border:1px dashed var(--c-primary-500);color:var(--c-primary-700);border-radius:var(--radius-pill);font-size:var(--fs-xs);font-weight:600;padding:2px var(--space-2);min-height:30px}
+  .add-btn{background:none;border:1px dashed var(--c-primary-500);color:var(--c-primary-700);border-radius:var(--radius-pill);font-size:var(--fs-xs);font-weight:600;padding:var(--space-2) var(--space-3);min-height:36px}
   .add-btn:hover{background:var(--c-primary-50)}
   .empty-voters{font-size:var(--fs-xs);color:var(--c-neutral-500)}
 
@@ -93,7 +117,9 @@
   .venue-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4)}
   #map{width:100%;height:320px;border-radius:var(--radius-md);border:1px solid var(--c-neutral-200);background:var(--c-neutral-100)}
   .search{position:relative;margin-bottom:var(--space-3)}
-  .search__row{display:flex;gap:var(--space-2)}
+  .search__row{display:flex;gap:var(--space-2);align-items:stretch}
+  .search__row .input{flex:1 1 auto;min-width:0}
+  .search__row .btn{flex:0 0 auto;white-space:nowrap;padding-left:var(--space-4);padding-right:var(--space-4)}
   .search__results{position:absolute;z-index:20;left:0;right:0;top:calc(100% + var(--space-1));background:var(--c-neutral-0);border:1px solid var(--c-neutral-200);border-radius:var(--radius-md);box-shadow:var(--shadow-md);max-height:240px;overflow:auto}
   .search__results button{display:block;width:100%;text-align:left;padding:var(--space-3);border:0;border-bottom:1px solid var(--c-neutral-100);background:transparent}
   .search__results button:last-child{border-bottom:0}
@@ -122,7 +148,7 @@
 
   .modal{position:fixed;inset:0;z-index:80;background:rgba(17,24,39,.45);display:flex;align-items:flex-end;justify-content:center}
   .modal[hidden]{display:none}
-  .modal__panel{background:var(--c-neutral-0);width:100%;max-width:520px;max-height:86vh;overflow:auto;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:var(--space-5);box-shadow:var(--shadow-md)}
+  .modal__panel{background:var(--c-neutral-0);width:100%;max-width:520px;max-height:88vh;overflow:auto;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:var(--space-5);padding-bottom:calc(var(--space-5) + env(safe-area-inset-bottom));box-shadow:var(--shadow-md)}
   .modal__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-3)}
   .modal__head h3{margin:0;font-size:var(--fs-lg)}
   .modal__close{background:none;border:0;font-size:24px;line-height:1;color:var(--c-neutral-500);min-width:44px;min-height:44px}
@@ -133,7 +159,7 @@
   .modal__new{display:flex;gap:var(--space-2);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px dashed var(--c-neutral-200);flex-wrap:wrap}
   .modal__new .input{flex:1;min-width:140px}
 
-  .toast{position:fixed;left:50%;bottom:var(--space-5);transform:translate(-50%,16px);background:var(--c-neutral-900);color:#fff;padding:var(--space-3) var(--space-5);border-radius:var(--radius-pill);font-size:var(--fs-sm);box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:100;max-width:calc(100vw - 32px);text-align:center}
+  .toast{position:fixed;left:50%;bottom:calc(var(--space-5) + env(safe-area-inset-bottom));transform:translate(-50%,16px);background:var(--c-neutral-900);color:#fff;padding:var(--space-3) var(--space-5);border-radius:var(--radius-pill);font-size:var(--fs-sm);box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:100;max-width:calc(100vw - 32px);text-align:center;word-break:break-word}
   .toast.is-visible{opacity:1;transform:translate(-50%,0)}
   footer{color:var(--c-neutral-500);font-size:var(--fs-xs);text-align:center;padding:var(--space-6) var(--space-4) var(--space-10)}
 
@@ -148,179 +174,223 @@
   }
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
-<!-- 腾讯地图 GL JS：非默认场景，需自行申请 Key 并替换下方占位符（见 README / 页面提示） -->
-<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service&key=PXXBZ-5YZYL-6EKPW-EOJFM-UR7P7-S4BX6" onerror="window.__tmapFailed=true"></script>
+<!-- 高德地图 JS API -->
+<script type="text/javascript">
+  window._AMapSecurityConfig = {
+    securityJsCode: '01fa84834a0674c1fa8a3a044b8c89e4'
+  };
+</script>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=a68f35595f75c531b14de04bb3d0c18a&plugin=AMap.PlaceSearch,AMap.Geocoder" onerror="window.__amapFailed=true"></script>
+<!-- 配置 + 数据层：Firestore REST，无第三方 SDK，任意静态托管可用 -->
+<script src="./config.js"></script>
+<script src="./firestore-client.js"></script>
 </head>
-<body>
-<div class="wrap">
-  <header class="hero">
-    <div class="hero__top">
-      <div>
-        <h1>约球投票</h1>
-        <p class="hero__sub">无需昵称 · 一人一个固定身份 · 日期每天更新 · 只改自己填的内容</p>
+<body data-page-node-id="lp87Mn8HyCdtvvi3C3ajUS">
+<div class="wrap" data-page-node-id="8vLsvcKQDgH3p9Fwyy3N1s">
+  <header class="hero" data-page-node-id="CvWeX3nGP2cw54aH7hUdgV">
+    <div class="hero__top" data-page-node-id="53uv44KuWohcXB5mNstf0N">
+      <div data-page-node-id="ArRHx8IjVgDUYBgKbr8OZ3">
+        <h1 data-page-node-id="E6wbXAFnwu0CCnWy4pM5Oq">约球投票</h1>
       </div>
-      <span class="range" id="range">—</span>
+      <span class="range" id="range" data-page-node-id="jdGEevMB2RIxP6ZCexgxkF">—</span>
     </div>
-    <div class="me-card">
-      <div class="me-card__left">
-        <span class="avatar avatar--lg" id="myAvatar" aria-label="我的头像">球</span>
-        <div>
-          <div class="me-card__label">我的身份（本机固定，不填昵称）</div>
-          <div class="me-name" id="myName"></div>
+    <div class="me-card" data-page-node-id="hMxjnevFmGohsU7F6EQp93">
+      <div class="me-card__left" data-page-node-id="HeaC5e1bwLS51Wtma64OgL">
+        <span class="avatar avatar--lg" id="myAvatar" aria-label="我的头像" data-page-node-id="lu7em9KhQIQlMzgkdozZft">球</span>
+        <div data-page-node-id="1AJPw98E6JAgmM9hOaIsUm">
+          <div class="me-card__label" data-page-node-id="BrsicQKpBGs4LARvDcnTyf">我的身份</div>
+          <div class="me-name" id="myName" data-page-node-id="LSt53qyU5CYA3GOfjJ0HFh"></div>
         </div>
+        <button class="btn btn--secondary btn--sm" id="editNameBtn" type="button" data-page-node-id="eq30Wx2RaGYALCKUzfD5CE">修改名字</button>
       </div>
-      <div class="me-card__hint">同一设备反复打开始终是同一人 · 报名只算一次</div>
+      <div class="me-edit" id="meEdit" data-page-node-id="QlHrrMAMPuQxDhcZAQWFNF">
+        <input class="input" id="nameInput" type="text" maxlength="20" placeholder="输入你的名字（所有人可见）" aria-label="新的名字" data-page-node-id="tls0HKuERgkPhJcuigO8xE">
+        <button class="btn btn--sm" id="nameSave" type="button" data-page-node-id="SdLJZmxjl47yHpiAQQtkNh">保存</button>
+        <button class="btn btn--secondary btn--sm" id="nameCancel" type="button" data-page-node-id="mxoDFZC5MWzbIP7NHuYGOa">取消</button>
+      </div>
     </div>
-    <p class="notice">本机模式：数据存在本机浏览器，群里每台手机各自独立；只能修改/删除自己填的报名和地点。需要全员实时同一份结果时，要接入云端数据库。</p>
+    <p class="notice" id="syncNotice" data-page-node-id="1rzpeJcd0JCBIIwAwyGAJM"><span class="sync-dot" id="syncDot" data-page-node-id="T0zmdpKeoFiz2xwp85R2Kg"></span><span id="syncText" data-page-node-id="MrcDJmW7qD0yHTDA4v1HA4">正在连接云端…</span></p>
+    <p class="notice" id="setupNotice" style="display:none;border:1px solid #f59e0b;background:#fffbeb;color:#92400e;padding:10px 12px;border-radius:8px">请先在仓库的 <code>config.js</code> 中填入 Firebase 项目 ID 和 Web API Key，并启用 Firestore；详见 README。</p>
   </header>
 
-  <main>
-    <section class="section" aria-labelledby="daysTitle">
-      <div class="section__head">
-        <h2 id="daysTitle">选日期</h2>
-        <span class="section__note">点卡片为自己报名/取消 · 点自己名字可移除 · 「替人报名」可添加他人</span>
+  <main data-page-node-id="LddNq3JwXJqjQAKPkLikhD">
+    <section class="section" aria-labelledby="daysTitle" data-page-node-id="oKbZqQn7YG9ZvLAp10lQbJ">
+      <div class="section__head" data-page-node-id="vUBthnsx3jcJtCMUFNVIeG">
+        <div class="section__title-group">
+          <h2 id="daysTitle" data-page-node-id="xYP2mj3zknZRVQApzkKxjx">选日期</h2>
+          <button class="btn btn--sm" id="confirmGameBtn" type="button">成局</button>
+        </div>
+        <span class="section__note" data-page-node-id="beltKkPn99uUxn3KlNC4Ye">点卡片为自己报名/取消 · 点自己名字可移除 · 「替人报名」可添加他人</span>
       </div>
-      <div class="days" id="days"></div>
-      <div class="summary" id="summary" aria-live="polite"></div>
+      <div class="current-game" id="currentGame" hidden></div>
+      <div class="pick-bar" id="pickBar" hidden>
+        <span class="pick-bar__text" id="pickText"></span>
+        <button class="btn btn--sm" id="pickConfirm" type="button">确定成局</button>
+        <button class="btn btn--secondary btn--sm" id="pickCancel" type="button">取消</button>
+      </div>
+      <div class="days" id="days" data-page-node-id="Mr1U1rKepOX5gknRLULS7O"></div>
+      <div class="summary" id="summary" aria-live="polite" data-page-node-id="Yh1An6Jq45lIRMACA8DbCQ"></div>
     </section>
 
-    <section class="section" aria-labelledby="venueTitle">
-      <div class="section__head">
-        <h2 id="venueTitle">打球地点</h2>
-        <span class="section__note">搜索或在地图上选点 · 只有自己添加的地点可编辑/删除</span>
+    <section class="section" aria-labelledby="venueTitle" data-page-node-id="06BzZVLJ2NESjdhzpfRt5N">
+      <div class="section__head" data-page-node-id="ihX4ZuKl5SipGWVJHYmp2H">
+        <h2 id="venueTitle" data-page-node-id="D8g7SYVla496dxstxxNAHc">打球地点</h2>
+        <span class="section__note" data-page-node-id="k7R27NOcxyeQ5JJxgAHSyO">搜索或在地图上选点 · 只有自己添加的地点可编辑/删除</span>
       </div>
-      <div class="venue-grid">
-        <div class="card">
-          <div class="search">
-            <div class="search__row">
-              <input class="input" id="placeSearch" type="search" placeholder="搜索北京的球馆、公园、学校…" aria-label="搜索地点">
-              <button class="btn btn--secondary" id="searchBtn" type="button">搜索</button>
+      <div class="venue-grid" data-page-node-id="Z7aiDNunYBLUNiTdxNKLQJ">
+        <div class="card" data-page-node-id="ipUw7GTgbceiVdlz04GwYI">
+          <div class="search" data-page-node-id="49s0hstHiK4bBBd1aQrGKk">
+            <div class="search__row" data-page-node-id="4iekgC00RtYNUfkBieCJKC">
+              <input class="input" id="placeSearch" type="search" placeholder="搜索全国任意地点：球馆、公园、学校…" aria-label="搜索地点" data-page-node-id="AbgPpLINHuCxWzPeL9L1qT">
+              <button class="btn btn--secondary" id="searchBtn" type="button" data-page-node-id="j3AdhEH59GulxlvwvpavaA">搜索</button>
             </div>
-            <div class="search__quick" id="searchQuick" aria-label="热门搜索">
-              <button type="button" data-kw="羽毛球馆">羽毛球馆</button>
-              <button type="button" data-kw="体育馆">体育馆</button>
-              <button type="button" data-kw="公园">公园</button>
-              <button type="button" data-kw="学校">学校</button>
+            <div class="search__quick" id="searchQuick" aria-label="热门搜索" data-page-node-id="XusKZq9iErvwcKLheDxhdq">
+              <button type="button" data-kw="羽毛球馆" data-page-node-id="3grnwiv3LF94B7Fl3GGCLr">羽毛球馆</button>
+              <button type="button" data-kw="体育馆" data-page-node-id="oU0ByU2Jy04i3SSgC4rYmk">体育馆</button>
+              <button type="button" data-kw="公园" data-page-node-id="ArKCNdl7ts6JIJEsC9qeFL">公园</button>
+              <button type="button" data-kw="学校" data-page-node-id="sjqTrCRlyhOxlA8hrxg7te">学校</button>
             </div>
-            <p class="search__hint">默认定位北京；未配置地图 Key 时，点快捷搜索可用内置地点列表选点。</p>
-            <div class="search__results" id="searchResults" hidden></div>
+            <p class="search__hint" data-page-node-id="kk0Pxlv3xEVWCpxlCFv3Zi">默认定位北京，可搜索全国地点；未加载地图时可用内置地点列表选点。</p>
+            <div class="search__results" id="searchResults" hidden data-page-node-id="G6eSYgwVXICNYE1FwEOyK3"></div>
           </div>
-          <div id="map" role="application" aria-label="地图选点：点击地图设置打球地点"></div>
-          <div class="map-fallback" id="mapFallback">地图未加载：在 GitHub Pages 上需把 index.html 里的 key 占位符替换为自己在腾讯位置服务申请的免费 Key。未配置前可用上方快捷搜索和下方手动坐标保存地点。</div>
-          <div class="form-grid">
-            <div class="field">
-              <label for="venueName">场地名称</label>
-              <input class="input" id="venueName" type="text" maxlength="40" placeholder="例如：首体 2 号场">
+          <div id="map" role="application" aria-label="地图选点：点击地图设置打球地点" data-page-node-id="Wqua75C0ttWU5X4MnDQZEs"></div>
+          <div class="map-fallback" id="mapFallback" data-page-node-id="mtvTYuDdV9efK361a925AA">地图未加载：可用上方快捷搜索选点，或在下方手动输入经纬度保存地点。</div>
+          <div class="form-grid" data-page-node-id="nvucf3zKP2RAUReZCKIZYP">
+            <div class="field" data-page-node-id="oNSVhZsJBmklMRbcopz2Ey">
+              <input class="input" id="venueName" type="text" maxlength="40" placeholder="例如：首体 2 号场" aria-label="场地名称" data-page-node-id="VLPNGnpeBAWo4Ffw0QWS7E">
             </div>
-            <div class="field">
-              <label for="venueAddress">地址</label>
-              <input class="input" id="venueAddress" type="text" maxlength="120" placeholder="选点后自动填入，可修改">
+            <div class="field" data-page-node-id="dNl6v6TIJeomaBA4yALkjj">
+              <label for="venueAddress" data-page-node-id="fZe7ynieluSlNVu0f7dQUS">地址</label>
+              <input class="input" id="venueAddress" type="text" maxlength="120" placeholder="选点后自动填入，可修改" data-page-node-id="NzltBBDYvU9CjWvge0AQYG">
             </div>
-            <div class="field field--full">
-              <label for="venueNote">备注（可选）</label>
+            <div class="field field--full" data-page-node-id="ipcBaTsZHByPDHrCPJgvof">
+              <label for="venueNote" data-page-node-id="3O5gAEWmrR32rxBvHH3KF8">备注（可选）</label>
               <textarea class="input" id="venueNote" maxlength="200" placeholder="例如：周六下午 3 点，进门左手边"></textarea>
             </div>
           </div>
-          <details>
-            <summary>手动输入坐标（GCJ-02 / 腾讯地图坐标系）</summary>
-            <div class="coords">
-              <input class="input" id="latInput" type="number" step="0.000001" placeholder="纬度 如 39.904200" aria-label="纬度">
-              <input class="input" id="lngInput" type="number" step="0.000001" placeholder="经度 如 116.407400" aria-label="经度">
+          <details data-page-node-id="X4Z8FQx0tunZUpp07Ozu4c">
+            <summary data-page-node-id="pzMsBeg01apoEU8xoyCqTM">手动输入坐标（GCJ-02 / 高德地图坐标系）</summary>
+            <div class="coords" data-page-node-id="6cZESbbLDH624FAVDPCNNz">
+              <input class="input" id="latInput" type="number" step="0.000001" placeholder="纬度 如 39.904200" aria-label="纬度" data-page-node-id="jtIuII46Cme47GkYAbXVUN">
+              <input class="input" id="lngInput" type="number" step="0.000001" placeholder="经度 如 116.407400" aria-label="经度" data-page-node-id="1i7W4fCWc9Jyhk8YZ0pZp7">
             </div>
           </details>
-          <div class="form-actions">
-            <button class="btn" id="saveVenue" type="button">保存地点</button>
-            <button class="btn btn--secondary" id="cancelEditVenue" type="button" hidden>取消编辑</button>
-            <button class="btn btn--secondary" id="clearPick" type="button">清除选点</button>
+          <div class="form-actions" data-page-node-id="egyGbFMfTHUupjn7v1X8pk">
+            <button class="btn" id="saveVenue" type="button" data-page-node-id="NjddTG6ZaciE5HVMBmUOLX">保存地点</button>
+            <button class="btn btn--secondary" id="cancelEditVenue" type="button" hidden data-page-node-id="GRWRdDIrd0GoialVgcadED">取消编辑</button>
+            <button class="btn btn--secondary" id="clearPick" type="button" data-page-node-id="dgOLCGUheWZSxwpdJHYA71">清除选点</button>
           </div>
         </div>
-        <div>
-          <div class="card">
-            <h3 style="font-size:var(--fs-md);margin:0 0 var(--space-3)">已保存的地点</h3>
-            <div class="venue-list" id="venueList"></div>
-            <p class="hint" id="venueEmpty">还没有保存地点。选点后填写名称即可保存。</p>
+        <div data-page-node-id="iheiE2mEQJt3miLTGRNztW">
+          <div class="card" data-page-node-id="IrZJlngOBzx1qaOZEINVzp">
+            <h3 style="font-size:var(--fs-md);margin:0 0 var(--space-3)" data-page-node-id="wbGQKlD4S51Z9zuSt50LCQ">已保存的地点</h3>
+            <div class="venue-list" id="venueList" data-page-node-id="Sg5XSW6TxFOz2QDoVqzlPL"></div>
+            <p class="hint" id="venueEmpty" data-page-node-id="lmoBOmLbnaQA9dLXVVb9gT">还没有保存地点。选点后填写名称即可保存。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="shareTitle">
+    <section class="section" aria-labelledby="historyTitle">
       <div class="section__head">
-        <h2 id="shareTitle">结果分享</h2>
-        <span class="section__note">本机模式下，可复制数据发给朋友，对方导入后即可查看</span>
+        <h2 id="historyTitle">历史成局</h2>
+        <span class="section__note">已过日期且未撤销的成局</span>
       </div>
-      <div class="card">
-        <div class="form-actions" style="margin-top:0">
-          <button class="btn btn--secondary" id="exportData" type="button">复制投票数据</button>
-          <button class="btn btn--secondary" id="importData" type="button">导入投票数据</button>
-        </div>
-        <p class="hint">导入按身份 ID 合并，不会把同一个人算成两个；他人创建的内容导入后你依然不能编辑。</p>
-      </div>
+      <div id="historyList" class="history-list"></div>
+      <p class="hint" id="historyEmpty">暂无成局记录</p>
     </section>
   </main>
 
-  <footer>微信群场景如需所有人实时看到同一份结果，需要接入共享后端（云数据库 + 登录）。</footer>
+  <footer data-page-node-id="rW3TxwJPBa8Rva7F4uB2xU">数据保存在云端，所有打开此链接的人看到同一份结果 · 页面会自动更新到最新版本</footer>
 </div>
 
-<div class="modal" id="voterModal" hidden>
-  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal__head">
-      <h3 id="modalTitle">替人报名</h3>
-      <button class="modal__close" id="modalClose" type="button" aria-label="关闭">✕</button>
+<div class="modal" id="voterModal" hidden data-page-node-id="EGK8M0DfemViyTfmLruWxr">
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-page-node-id="AAeZTmQdjmrqT0EPMz8t9N">
+    <div class="modal__head" data-page-node-id="gUNKFOA2V65GQTT7zEYvr7">
+      <h3 id="modalTitle" data-page-node-id="MpZyxJm7OeVQajp237Achb">替人报名</h3>
+      <button class="modal__close" id="modalClose" type="button" aria-label="关闭" data-page-node-id="pm2qWdnnqzzhB3cu6RdiEP">✕</button>
     </div>
-    <p class="hint" style="margin:0 0 var(--space-3)">你只能取消/删除由你添加的报名；别人添加的记录只可查看。</p>
-    <div class="modal__list" id="modalList"></div>
-    <div class="modal__new">
-      <input class="input" id="newVoterName" type="text" maxlength="20" placeholder="备注（选填，仅用于区分）">
-      <button class="btn" id="addNewVoter" type="button">添加并报名</button>
+    <p class="hint" style="margin:0 0 var(--space-3)" data-page-node-id="FhfALUEkCfzVBHFHEa2iVn">你只能取消/删除由你添加的报名；删除他人报名请在日期卡片上点对方的 × 并输入密码。</p>
+    <div class="modal__list" id="modalList" data-page-node-id="NsYypyEhcLf84UZ9jkrbuP"></div>
+    <div class="modal__new" data-page-node-id="rxZMc7qoANlKB5mug6NJ6r">
+      <input class="input" id="newVoterName" type="text" maxlength="20" placeholder="备注（选填，仅用于区分）" data-page-node-id="o1OBc6QUDRFFyfCq8IYrC7">
+      <button class="btn" id="addNewVoter" type="button" data-page-node-id="M9fFlNMtv3BvePJpOcU2VI">添加并报名</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="pwdModal" hidden data-page-node-id="M9gtJBbXX9gAI5aU2wquDB">
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="pwdTitle" data-page-node-id="JA7WwJYtrNNIkstG19XOTi">
+    <div class="modal__head" data-page-node-id="kWzPD0Q92FAaL8dgTbaYoC">
+      <h3 id="pwdTitle" data-page-node-id="iOuTjY2qNwhrTKcMWCfJzg">删除他人报名</h3>
+      <button class="modal__close" id="pwdClose" type="button" aria-label="关闭" data-page-node-id="xYNbsRQiVpcZ89yvTOzQ7X">✕</button>
+    </div>
+    <p class="hint" style="margin:0 0 var(--space-3)" data-page-node-id="hda9g4vEAXvLLvolvv9ppn">删除别人报名需要输入管理密码。</p>
+    <div class="field" data-page-node-id="jEp5FZSUEf1VB8yC0E0e35">
+      <label for="pwdInput" data-page-node-id="tGgBQbGn4Ht8rZMD0WeoIZ">管理密码</label>
+      <input class="input" id="pwdInput" type="password" inputmode="text" autocomplete="off" placeholder="请输入密码" aria-label="管理密码" data-page-node-id="IbXccf1MjPqe6F3vIqLHX2">
+    </div>
+    <p class="hint" id="pwdError" style="color:var(--c-danger);min-height:18px" data-page-node-id="GQFNgG85rcLye6GFnJKHFf"></p>
+    <div class="form-actions" data-page-node-id="AiaoP73PPaw70YNMtmq2ES">
+      <button class="btn btn--danger" id="pwdConfirm" type="button" data-page-node-id="2rkRbniRSK7G0hyjTybR1O">确认删除</button>
+      <button class="btn btn--secondary" id="pwdCancel" type="button" data-page-node-id="7BsAaOcFlLyh9JHUBf48qb">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="gameModal" hidden>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+    <div class="modal__head">
+      <h3 id="gameModalTitle">确认成局</h3>
+      <button class="modal__close" id="gameModalClose" type="button" aria-label="关闭">✕</button>
+    </div>
+    <p id="gameConfirmText" style="font-size:var(--fs-md);line-height:1.7;margin:0 0 var(--space-4)"></p>
+    <div class="form-actions">
+      <button class="btn" id="gameModalOk" type="button">确定成局</button>
+      <button class="btn btn--secondary" id="gameModalBack" type="button">再改改</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" data-page-node-id="IQ6L6DMQShY4jPD0Q0kLH3"></div>
 
 <script>
 (function () {
   'use strict';
 
-  var KEY = { me: 'badminton.me', voters: 'badminton.voters', votes: 'badminton.votes', venues: 'badminton.venues', active: 'badminton.venue.active' };
   var WEEK = ['周日','周一','周二','周三','周四','周五','周六'];
   var BEIJING = { lat: 39.904200, lng: 116.407400 };
   var CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  var state = { me: null, voters: {}, votes: {}, venues: [], activeId: '' };
+  var ME_KEY = 'badminton.me.id';
+  var ME_NAME_KEY = 'badminton.me.name';
+  var ADMIN_PASSWORD = 'sjb';
+  var APP_VERSION = 13; // GitHub Pages 独立版：Firestore 数据层
+
+  // Firebase 公共配置：Web API Key 本来就在浏览器里使用，可随页面公开
+  var CLOUD_CONFIG = {
+    projectId: (window.APP_CONFIG && window.APP_CONFIG.projectId) || '',
+    apiKey: (window.APP_CONFIG && window.APP_CONFIG.apiKey) || ''
+  };
+  var cloud = null;
+  var state = { me: null, voters: {}, votes: {}, venues: [], activeId: '', history: [] };
+  // 成局：picking=true 表示正在选日期；pickedKey 为当前高亮（红色）的日期
+  var picking = false, pickedKey = '';
   var $ = function (s) { return document.querySelector(s); };
   var uid = function () { return 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); };
 
-  function read(key, fallback) {
-    try { var v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); }
-    catch (e) { return fallback; }
-  }
-  function write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { toast('本地存储不可用，数据仅本次有效'); } }
-  function persist() {
-    write(KEY.me, state.me); write(KEY.voters, state.voters); write(KEY.votes, state.votes);
-    write(KEY.venues, state.venues); write(KEY.active, state.activeId);
-  }
   function hash(str) { var h = 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); }
-  function randCode() {
-    var s = ''; for (var i = 0; i < 4; i++) s += CODE_CHARS.charAt(Math.floor(Math.random() * CODE_CHARS.length)); return s;
-  }
+  function randCode() { var s = ''; for (var i = 0; i < 4; i++) s += CODE_CHARS.charAt(Math.floor(Math.random() * CODE_CHARS.length)); return s; }
   function colorFor(id) { return 'hsl(' + (hash(String(id)) % 360) + ',62%,90%)'; }
   function inkFor(id) { return 'hsl(' + (hash(String(id)) % 360) + ',55%,28%)'; }
-  function makeIdentity(id) {
-    id = id || uid();
-    var code = String(id).slice(-4).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4) || randCode();
-    return { id: id, code: code, createdBy: id };
-  }
+  function codeOf(id) { return (String(id).slice(-4).toUpperCase().replace(/[^A-Z0-9]/g, '') || randCode()).slice(0, 4); }
+  function makeIdentity(id) { id = id || uid(); return { id: id, code: codeOf(id), createdBy: id }; }
   function displayName(v) {
     if (!v) return '未知球友';
     if (v.note) return v.note;
     if (v.legacyName) return v.legacyName;
     return '球友 ' + (v.code || '????');
   }
-  function initialOf(v) {
-    var s = displayName(v).trim();
-    return s ? s.charAt(0).toUpperCase() : '球';
-  }
+  function initialOf(v) { var s = displayName(v).trim(); return s ? s.charAt(0).toUpperCase() : '球'; }
   function renderAvatar(node, v, cls) {
     node.className = 'avatar ' + (cls || '');
     node.style.background = v && v.id ? colorFor(v.id) : '#dbeafe';
@@ -329,110 +399,28 @@
     node.setAttribute('aria-label', displayName(v) + ' 的头像');
     return node;
   }
-  function ensureVoter(id) {
-    if (id && !state.voters[id]) {
-      state.voters[id] = makeIdentity(id);
-      state.voters[id].createdBy = state.me && state.me.id ? state.me.id : id;
-    }
-    return state.voters[id];
-  }
 
-  function normalizeVote(x) {
-    if (typeof x === 'string') return { vid: x, by: x };
-    if (x && typeof x === 'object' && typeof x.vid === 'string') return { vid: x.vid, by: x.by || x.vid };
-    return null;
-  }
   function votesFor(key) { return Array.isArray(state.votes[key]) ? state.votes[key] : []; }
   function addVote(key, vid, by) {
     var arr = votesFor(key).slice();
     if (arr.some(function (e) { return e.vid === vid; })) return false;
-    arr.push({ vid: vid, by: by });
-    state.votes[key] = arr;
-    return true;
+    arr.push({ vid: vid, by: by }); state.votes[key] = arr; return true;
   }
-  function canRemoveEntry(e) { return !!e && (e.by === state.me.id || e.vid === state.me.id); }
   function removeEntry(key, vid, by) {
     state.votes[key] = votesFor(key).filter(function (e) { return !(e.vid === vid && (!by || e.by === by)); });
   }
+  function canRemoveEntry(e) { return !!e && (e.by === state.me.id || e.vid === state.me.id); }
   function canEditVenue(v) { return !!v && (v.createdBy === state.me.id || !v.createdBy); }
-  function creatorName(id) {
-    if (!id) return '匿名';
-    if (id === state.me.id) return '我';
-    return displayName(state.voters[id]);
-  }
-
-  function migrate() {
-    var changed = false;
-    Object.keys(state.votes).forEach(function (k) {
-      var arr = state.votes[k];
-      if (!Array.isArray(arr)) { state.votes[k] = []; changed = true; return; }
-      var out = [], seen = {};
-      arr.forEach(function (raw) {
-        var e = normalizeVote(raw);
-        if (e && !seen[e.vid]) { seen[e.vid] = true; out.push(e); if (raw !== e) changed = true; }
-        else if (raw !== e) changed = true;
-      });
-      state.votes[k] = out;
-    });
-    Object.keys(state.votes).forEach(function (k) {
-      state.votes[k].forEach(function (e) { if (!state.voters[e.vid]) { ensureVoter(e.vid); changed = true; } });
-    });
-    Object.keys(state.voters).forEach(function (id) {
-      var v = state.voters[id];
-      if (!v || typeof v !== 'object') { delete state.voters[id]; changed = true; return; }
-      if (!v.code) { v.code = (String(id).slice(-4).toUpperCase().replace(/[^A-Z0-9]/g, '') || randCode()); changed = true; }
-      if (!v.id) { v.id = id; changed = true; }
-      if (!v.createdBy) { v.createdBy = (id === state.me.id ? state.me.id : id); changed = true; }
-    });
-    state.venues.forEach(function (v) {
-      if (v && typeof v.createdBy === 'object' && v.createdBy) {
-        v.createdBy = v.createdBy.id || state.me.id; changed = true;
-      }
-      if (v && !v.createdBy) { v.createdBy = state.me.id; changed = true; }
-    });
-    if (changed) persist();
-  }
-
-  function load() {
-    var stored = read(KEY.me, null);
-    state.voters = read(KEY.voters, {}) || {};
-    state.votes = read(KEY.votes, {}) || {};
-    state.venues = read(KEY.venues, []) || [];
-    state.activeId = read(KEY.active, '') || '';
-    if (!state.voters || typeof state.voters !== 'object') state.voters = {};
-    if (!state.votes || typeof state.votes !== 'object') state.votes = {};
-    if (!Array.isArray(state.venues)) state.venues = [];
-    if (!stored || !stored.id) {
-      state.me = makeIdentity();
-      persist();
-    } else {
-      state.me = makeIdentity(stored.id);
-      state.me.note = stored.note || '';
-      state.me.legacyName = stored.legacyName || '';
-    }
-    if (!state.voters[state.me.id]) state.voters[state.me.id] = state.me;
-    else {
-      state.voters[state.me.id].code = state.me.code;
-      state.voters[state.me.id].note = state.me.note || '';
-    }
-    migrate();
-  }
-
-  function dayKey(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-  function nextDays() {
-    var today = new Date(), out = [];
-    for (var i = 0; i < 7; i++) {
-      var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
-      out.push({ key: dayKey(d), num: d.getDate(), month: d.getMonth() + 1, week: WEEK[d.getDay()], offset: i });
-    }
-    return out;
-  }
-  var days = nextDays();
+  function creatorName(id) { if (!id) return '匿名'; if (id === state.me.id) return '我'; return displayName(state.voters[id]); }
 
   var toastTimer;
   function toast(msg) {
     var t = $('#toast'); t.textContent = msg; t.classList.add('is-visible');
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('is-visible'); }, 2600);
+  }
+  function setSync(ok, text) {
+    $('#syncDot').classList.toggle('is-off', !ok);
+    $('#syncText').textContent = text;
   }
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -440,6 +428,187 @@
     if (text !== undefined) n.textContent = text;
     return n;
   }
+  function unwrap(res) { if (res && res.error) throw res.error; return res ? res.data : null; }
+
+  /* ---------- 云端数据 ---------- */
+  function initCloud() {
+    var notice = $('#setupNotice');
+    if (!CLOUD_CONFIG.projectId || !CLOUD_CONFIG.apiKey || /^YOUR_/.test(CLOUD_CONFIG.projectId)) {
+      if (notice) notice.style.display = '';
+      setSync(false, '尚未配置 Firebase');
+      return false;
+    }
+    if (notice) notice.style.display = 'none';
+    if (typeof WorkBuddyCloud === 'undefined' || !WorkBuddyCloud.createWorkBuddyCloud) return false;
+    try {
+      cloud = WorkBuddyCloud.createWorkBuddyCloud(CLOUD_CONFIG);
+      return true;
+    } catch (e) {
+      setSync(false, '云端配置错误');
+      return false;
+    }
+  }
+  function loadFromCloud() {
+    if (!cloud) return Promise.reject(new Error('cloud unavailable'));
+    return Promise.all([
+      cloud.database.from('wb_voters').select('*'),
+      cloud.database.from('wb_votes').select('*'),
+      cloud.database.from('wb_venues').select('*'),
+      cloud.database.from('wb_meta').select('*'),
+      cloud.database.from('wb_history').select('*')
+    ]).then(function (res) {
+      var voters = unwrap(res[0]) || [], votes = unwrap(res[1]) || [], venues = unwrap(res[2]) || [], meta = unwrap(res[3]) || [], history = unwrap(res[4]) || [];
+      var nv = {}, nvo = {}, nvotes = {}, nvenues = [], activeId = '', cloudVersion = 1;
+      voters.forEach(function (r) {
+        if (!r.id) return;
+        nv[r.id] = { id: r.id, code: codeOf(r.id), createdBy: r.created_by || r.id, note: r.note || '', legacyName: r.legacy_name || '' };
+      });
+      votes.forEach(function (r) {
+        if (!r.day_key || !r.voter_id) return;
+        if (!nvo[r.day_key]) nvo[r.day_key] = [];
+        nvo[r.day_key].push({ vid: r.voter_id, by: r.created_by || r.voter_id });
+      });
+      venues.forEach(function (r) {
+        if (!r.id) return;
+        nvenues.push({ id: r.id, name: r.name, address: r.address || '', note: r.note || '', lat: r.lat, lng: r.lng, createdBy: r.created_by || '' });
+      });
+      meta.forEach(function (r) {
+        if (r.key === 'activeVenue') activeId = r.value || '';
+        if (r.key === 'version') cloudVersion = parseInt(r.value, 10) || 1;
+      });
+      state.voters = nv; state.votes = nvo; state.venues = nvenues; state.activeId = activeId;
+      // 成局记录：兼容旧字段；新增 game_day / player_count / revoked
+      state.history = history.map(function (h) {
+        return {
+          id: h.id,
+          game_day: h.game_day || '',
+          date_from: h.date_from || '',
+          date_to: h.date_to || '',
+          venue_name: h.venue_name || '',
+          venue_address: h.venue_address || '',
+          voter_ids: h.voter_ids || '[]',
+          player_count: (typeof h.player_count === 'number' ? h.player_count : 0),
+          revoked: !!h.revoked,
+          created_by: h.created_by || '',
+          created_at: h.created_at || ''
+        };
+      }).sort(function (a, b) { return String(b.game_day || b.date_to).localeCompare(String(a.game_day || a.date_to)); });
+      if (!nv[state.me.id]) nv[state.me.id] = state.me;
+      else {
+        // 云端已有我这条记录：以云端名字为准（换设备/重登也保持一致），并回写本机
+        var mine = nv[state.me.id];
+        state.me.note = mine.note || '';
+        state.me.legacyName = mine.legacyName || '';
+        try {
+          if (state.me.note) localStorage.setItem(ME_NAME_KEY, state.me.note);
+          else localStorage.removeItem(ME_NAME_KEY);
+        } catch (e) {}
+      }
+      // 版本不一致 -> 自动刷新到新版（带时间戳绕过微信缓存）
+      if (cloudVersion > APP_VERSION) {
+        var url = new URL(location.href);
+        var curV = url.searchParams.get('v') || '';
+        // 防死循环：已带当前版本号的绕过参数则说明刷新过，停止
+        if (curV.indexOf(String(cloudVersion) + '_') !== 0) {
+          url.searchParams.set('v', String(cloudVersion) + '_' + Date.now());
+          location.replace(url.toString());
+          return;
+        }
+      }
+      setSync(true, '已连接云端 · 数据实时共享 · 最后同步 ' + new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit',second:'2-digit'}));
+    });
+  }
+  function refresh() {
+    if (!cloud) return Promise.resolve(); // 未配置 Firebase 时不反复报错，保留配置提示
+    return loadFromCloud().then(function () {
+      renderMe(); renderDays(); renderSummary(); renderVenues(); renderCurrentGame(); renderHistory();
+      if (!$('#voterModal').hidden) renderModalList();
+      if (picking) updatePickBar();
+    })
+      .catch(function () { setSync(false, '云端连接失败 · 显示上次数据，正在重试'); });
+  }
+  function ensureVoterRow(vid) {
+    if (!cloud || vid === state.me.id) return Promise.resolve();
+    if (state.voters[vid]) return Promise.resolve();
+    var row = { id: vid, created_by: state.me.id, note: '', legacy_name: '' };
+    state.voters[vid] = makeIdentity(vid);
+    return cloud.database.from('wb_voters').insert(row).then(function (r) { if (r && r.error) throw r.error; }).catch(function () {});
+  }
+  // 改名：把自己的名字写进 wb_voters（id 不变，报名按 vid 关联，故已有报名会自动显示新名字）
+  function cloudSaveMyName(name) {
+    if (!cloud) return;
+    cloud.database.from('wb_voters').upsert({
+      id: state.me.id, created_by: state.me.id, note: name, legacy_name: state.me.legacyName || ''
+    }).then(function (r) {
+      if (r && r.error) { toast('名字同步失败，正在重试'); refresh(); }
+    }).catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+  function cloudInsertVote(dayKey, vid, by) {
+    if (!cloud) return;
+    cloud.database.from('wb_votes').insert({ day_key: dayKey, voter_id: vid, created_by: by })
+      .then(function (r) { if (r && r.error) { toast('同步失败：' + (r.error.message || '请重试')); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+  function cloudDeleteVote(dayKey, vid, by) {
+    if (!cloud) return;
+    var q = cloud.database.from('wb_votes').delete().eq('day_key', dayKey).eq('voter_id', vid);
+    if (by) q = q.eq('created_by', by);
+    q.then(function (r) { if (r && r.error) { toast('同步失败，正在重新同步'); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+  function cloudDeleteVoter(vid) {
+    if (!cloud) return;
+    Promise.all([
+      cloud.database.from('wb_votes').delete().eq('voter_id', vid).eq('created_by', state.me.id),
+      cloud.database.from('wb_voters').delete().eq('id', vid).eq('created_by', state.me.id)
+    ]).then(function () {}).catch(function () { refresh(); });
+  }
+  function cloudUpsertVenue(v) {
+    if (!cloud) return;
+    var row = { name: v.name, address: v.address || '', note: v.note || '', lat: v.lat, lng: v.lng, created_by: v.createdBy };
+    cloud.database.from('wb_venues').upsert({ id: v.id, name: row.name, address: row.address, note: row.note, lat: row.lat, lng: row.lng, created_by: row.created_by })
+      .then(function (r) { if (r && r.error) { toast('地点同步失败'); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+  function cloudDeleteVenue(id) {
+    if (!cloud) return;
+    cloud.database.from('wb_venues').delete().eq('id', id).eq('created_by', state.me.id)
+      .then(function (r) { if (r && r.error) refresh(); }).catch(function () { refresh(); });
+  }
+  function cloudSetActive(id) {
+    if (!cloud) return;
+    cloud.database.from('wb_meta').upsert({ key: 'activeVenue', value: id })
+      .then(function (r) { if (r && r.error) refresh(); }).catch(function () { refresh(); });
+  }
+  function cloudSaveGame(row) {
+    if (!cloud) return;
+    cloud.database.from('wb_history').upsert(row)
+      .then(function (r) { if (r && r.error) { toast('成局同步失败，正在重试'); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+  function cloudRevokeGame(id) {
+    if (!cloud) return;
+    cloud.database.from('wb_history').update({ revoked: true }).eq('id', id)
+      .then(function (r) { if (r && r.error) { toast('撤销同步失败，正在重试'); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+  }
+
+  function dayKey(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  // 可选日期：从今天起，截止到「下个周五」（含）。今天是周五时取下周的周五，避免只有一天。
+  function nextDays() {
+    var today = new Date(), out = [];
+    var delta = (5 - today.getDay() + 7) % 7; // 距最近一个周五的天数（0=今天就是周五）
+    if (delta === 0) delta = 7;               // 今天周五 -> 顺延到下一周周五
+    var end = new Date(today.getFullYear(), today.getMonth(), today.getDate() + delta);
+    for (var i = 0; ; i++) {
+      var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+      out.push({ key: dayKey(d), num: d.getDate(), month: d.getMonth() + 1, week: WEEK[d.getDay()], offset: i });
+      if (d.getTime() >= end.getTime()) break;
+    }
+    return out;
+  }
+  var days = nextDays();
+
   function renderMe() {
     renderAvatar($('#myAvatar'), state.me, 'avatar--lg');
     $('#myName').textContent = displayName(state.me) + '（我）';
@@ -449,88 +618,94 @@
     days.forEach(function (day) {
       var entries = votesFor(day.key);
       var mine = entries.some(function (e) { return e.vid === state.me.id; });
-      var card = el('div', 'day-card');
+      var isGameDay = currentGames().some(function (g) { return g.game_day === day.key; });
+      var card = el('div', 'day-card' + ((picking && pickedKey === day.key) || (!picking && isGameDay) ? ' is-picked' : ''));
       card.setAttribute('role', 'button'); card.tabIndex = 0; card.dataset.key = day.key;
       card.setAttribute('aria-pressed', mine ? 'true' : 'false');
       card.setAttribute('aria-label', day.month + '月' + day.num + '日 ' + day.week + '，' + entries.length + '人报名，' + (mine ? '已报名，点击取消' : '点击报名'));
-
       var top = el('div', 'day-card__top');
       var left = el('div');
       left.append(el('div', 'day-card__num', String(day.num)));
       left.append(el('div', 'day-card__meta', day.month + ' 月 · ' + day.week));
       top.append(left);
       top.append(el('span', 'badge ' + (day.offset === 0 ? 'badge--today' : 'badge badge--state'), day.offset === 0 ? '今天' : day.offset === 1 ? '明天' : '报名'));
-
       var list = el('div', 'voters');
       if (!entries.length) list.append(el('span', 'empty-voters', '暂无人报名'));
       else entries.forEach(function (e) {
         var v = state.voters[e.vid] || makeIdentity(e.vid);
-        var removable = canRemoveEntry(e);
-        var chip = el(removable ? 'button' : 'span', 'chip' + (removable ? ' chip--button' : '') + (e.vid === state.me.id ? ' chip--me' : ''));
-        if (removable) {
-          chip.type = 'button';
-          chip.setAttribute('aria-label', '移除 ' + displayName(v));
-        }
+        var isMine = canRemoveEntry(e); // 我添加的/我自己：直接删；他人：需密码
+        var chip = el('button', 'chip chip--button' + (e.vid === state.me.id ? ' chip--me' : '') + (isMine ? '' : ' chip--other'));
+        chip.type = 'button';
+        chip.setAttribute('aria-label', (isMine ? '移除 ' : '删除他人报名 ') + displayName(v));
         chip.append(renderAvatar(el('span'), v, 'avatar--sm'));
         chip.append(document.createTextNode(displayName(v)));
         if (e.vid === state.me.id) chip.append(el('span', '', '(我)'));
-        if (removable) {
-          chip.append(el('span', 'chip__x', '×'));
-          chip.addEventListener('click', function (ev) {
-            ev.stopPropagation();
+        chip.append(el('span', 'chip__x', '×'));
+        chip.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          if (picking) { pickDay(day.key); return; }
+          function doDelete() {
             removeEntry(day.key, e.vid, e.by);
-            persist(); renderDays(); renderSummary(); toast('已移除 ' + displayName(v));
-          });
-        }
+            renderDays(); renderSummary(); toast('已移除 ' + displayName(v));
+            cloudDeleteVote(day.key, e.vid, e.by);
+          }
+          if (isMine) doDelete();
+          else openPwd(doDelete);
+        });
         list.append(chip);
       });
-
       var foot = el('div', 'day-card__foot');
       foot.append(el('span', 'day-card__count', entries.length + ' 人报名'));
       var add = el('button', 'add-btn', '替人报名'); add.type = 'button';
       add.setAttribute('aria-label', '为 ' + day.month + '月' + day.num + '日替人报名');
-      add.addEventListener('click', function (e) { e.stopPropagation(); openModal(day.key); });
+      add.addEventListener('click', function (e) { e.stopPropagation(); if (picking) { pickDay(day.key); return; } openModal(day.key); });
       foot.append(add);
-
       card.append(top, list, foot);
-      card.addEventListener('click', function () { toggleVote(day.key); });
+      card.addEventListener('click', function () { if (picking) pickDay(day.key); else toggleVote(day.key); });
       card.addEventListener('keydown', function (e) {
         if (e.target !== card) return;
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleVote(day.key); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (picking) pickDay(day.key); else toggleVote(day.key); }
       });
       box.append(card);
     });
     $('#range').textContent = days[0].month + '月' + days[0].num + '日 — ' + days[6].month + '月' + days[6].num + '日';
   }
   function renderSummary() {
-    var total = 0, top = null, topCount = 0;
+    // 参与人数：按报名人身份 vid 去重，同一人报名多个日期只统计 1 次。
+    // 每次渲染都基于当前 state.votes 重新计算，报名/取消/删除后调用本函数即可同步更新。
+    var seen = {}, top = null, topCount = 0;
     days.forEach(function (day) {
-      var n = votesFor(day.key).length;
-      total += n;
+      var entries = votesFor(day.key);
+      entries.forEach(function (e) { if (e.vid) seen[e.vid] = true; });
+      var n = entries.length;
       if (n > topCount) { topCount = n; top = day; }
     });
+    var participants = Object.keys(seen).length;
     var active = state.venues.filter(function (v) { return v.id === state.activeId; })[0];
     var s = $('#summary'); s.replaceChildren();
-    function stat(label, value) {
-      var d = el('div', 'stat'); d.append(el('div', 'stat__label', label), el('div', 'stat__value', value)); return d;
-    }
+    function stat(label, value) { var d = el('div', 'stat'); d.append(el('div', 'stat__label', label), el('div', 'stat__value', value)); return d; }
     s.append(
-      stat('报名人次', total + ' 人次'),
+      stat('参与人数', participants + ' 人'),
       stat('最热门日期', top && topCount ? top.month + '/' + top.num + ' ' + top.week + '（' + topCount + ' 人）' : '暂无'),
       stat('约定地点', active ? active.name : '待定')
     );
+  }
+  function offlineWarn() {
+    if (!cloud) toast('当前未连接云端，改动仅本机可见，正在自动重连');
   }
   function toggleVote(key) {
     var entries = votesFor(key);
     var mine = entries.filter(function (e) { return e.vid === state.me.id; })[0];
     if (mine) {
       removeEntry(key, state.me.id, mine.by);
-      toast('已取消报名');
+      toast('已取消报名'); offlineWarn();
+      cloudDeleteVote(key, state.me.id, mine.by);
     } else {
       addVote(key, state.me.id, state.me.id);
-      toast('报名成功');
+      toast('报名成功'); offlineWarn();
+      cloudInsertVote(key, state.me.id, state.me.id);
     }
-    persist(); renderDays(); renderSummary();
+    renderDays(); renderSummary();
   }
 
   var modalKey = null;
@@ -562,9 +737,9 @@
       } else {
         var toggle = el('button', 'btn btn--secondary btn--sm', myEntry ? '取消报名' : '报名'); toggle.type = 'button';
         toggle.addEventListener('click', function () {
-          if (myEntry) removeEntry(modalKey, id, state.me.id);
-          else addVote(modalKey, id, state.me.id);
-          persist(); renderModalList(); renderDays(); renderSummary();
+          if (myEntry) { removeEntry(modalKey, id, state.me.id); cloudDeleteVote(modalKey, id, state.me.id); }
+          else { addVote(modalKey, id, state.me.id); ensureVoterRow(id); cloudInsertVote(modalKey, id, state.me.id); }
+          renderModalList(); renderDays(); renderSummary();
         });
         acts.append(toggle);
       }
@@ -575,7 +750,8 @@
           Object.keys(state.votes).forEach(function (k) { removeEntry(k, id, state.me.id); });
           var referenced = Object.keys(state.votes).some(function (k) { return votesFor(k).some(function (e) { return e.vid === id; }); });
           if (!referenced) delete state.voters[id];
-          persist(); renderModalList(); renderDays(); renderSummary(); toast('已删除你添加的记录');
+          renderModalList(); renderDays(); renderSummary(); toast('已删除你添加的记录');
+          cloudDeleteVoter(id);
         });
         acts.append(del);
       }
@@ -584,13 +760,15 @@
   }
   function addNewVoter() {
     var note = $('#newVoterName').value.trim().slice(0, 20);
-    var v = makeIdentity();
-    v.note = note || '';
-    v.createdBy = state.me.id;
+    var v = makeIdentity(); v.note = note || ''; v.createdBy = state.me.id;
     state.voters[v.id] = v;
     addVote(modalKey, v.id, state.me.id);
     $('#newVoterName').value = '';
-    persist(); renderModalList(); renderDays(); renderSummary(); toast('已添加 ' + displayName(v));
+    renderModalList(); renderDays(); renderSummary(); toast('已添加 ' + displayName(v));
+    if (cloud) cloud.database.from('wb_voters').insert({ id: v.id, created_by: state.me.id, legacy_name: '', note: note })
+      .then(function (r) { if (r && r.error) { toast('同步失败，正在重新同步'); refresh(); } })
+      .catch(function () { toast('网络异常，正在重新同步'); refresh(); });
+    cloudInsertVote(modalKey, v.id, state.me.id);
   }
 
   function renderVenues() {
@@ -607,7 +785,7 @@
       var actions = el('div', 'venue-item__actions');
       var locate = el('button', 'btn btn--secondary btn--sm', '在地图查看'); locate.type = 'button';
       locate.addEventListener('click', function () {
-        if (map) { var p = new TMap.LatLng(v.lat, v.lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+        if (map) { map.setCenter([v.lng, v.lat]); map.setZoom(16); setMarker(Number(v.lat), Number(v.lng)); }
         $('#latInput').value = v.lat; $('#lngInput').value = v.lng;
       });
       actions.append(locate);
@@ -617,16 +795,16 @@
         actions.append(edit);
         if (v.id !== state.activeId) {
           var set = el('button', 'btn btn--secondary btn--sm', '设为约定地点'); set.type = 'button';
-          set.addEventListener('click', function () { state.activeId = v.id; persist(); renderVenues(); renderSummary(); toast('已设为约定地点'); });
+          set.addEventListener('click', function () { state.activeId = v.id; renderVenues(); renderSummary(); toast('已设为约定地点'); cloudSetActive(v.id); });
           actions.append(set);
         }
         var del = el('button', 'btn btn--danger btn--sm', '删除'); del.type = 'button';
         del.addEventListener('click', function () {
           if (!window.confirm('确定删除「' + (v.name || '未命名地点') + '」？')) return;
           state.venues = state.venues.filter(function (x) { return x.id !== v.id; });
-          if (state.activeId === v.id) state.activeId = '';
+          if (state.activeId === v.id) { state.activeId = ''; cloudSetActive(''); }
           if (editingVenueId === v.id) resetVenueForm();
-          persist(); renderVenues(); renderSummary(); toast('地点已删除');
+          renderVenues(); renderSummary(); toast('地点已删除'); cloudDeleteVenue(v.id);
         });
         actions.append(del);
       }
@@ -634,39 +812,179 @@
     });
   }
 
-  /* ---------- 地图 ---------- */
-  var map = null, marker = null, geocoder = null, suggestion = null;
+  /* ---------- 成局（人工确认） ---------- */
+  // 成局不再自动判定：点「成局」→默认选报名最多的日期→可改选→弹提示→确定后写入云端。
+  // 撤销用 revoked 标记（不物理删除），历史列表只显示「未撤销 且 日期已过今天」的记录。
+  function dayKeyText(key) {
+    var p = String(key || '').split('-');
+    if (p.length !== 3) return String(key || '');
+    var d = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+    return parseInt(p[1], 10) + '月' + parseInt(p[2], 10) + '日 ' + WEEK[d.getDay()];
+  }
+  function activeVenue() { return state.venues.filter(function (v) { return v.id === state.activeId; })[0] || null; }
+  function todayKey() { return dayKey(new Date()); }
+  function currentGames() {
+    var t = todayKey();
+    return state.history.filter(function (h) { return !h.revoked && h.game_day && h.game_day >= t; });
+  }
+  function pastGames() {
+    var t = todayKey();
+    return state.history.filter(function (h) { return !h.revoked && h.game_day && h.game_day < t; });
+  }
+  function gameIds(h) { try { return JSON.parse(h.voter_ids) || []; } catch (e) { return []; } }
+
+  function renderCurrentGame() {
+    var box = $('#currentGame'); if (!box) return;
+    var games = currentGames();
+    box.replaceChildren();
+    box.hidden = games.length === 0;
+    games.forEach(function (g) {
+      var card = el('div', 'current-game');
+      var left = el('div');
+      left.append(el('div', 'current-game__title', '已成局 · ' + dayKeyText(g.game_day)));
+      var meta = (g.venue_name || '待定场地') + (g.venue_address ? ' · ' + g.venue_address : '') + ' · ' + g.player_count + ' 人报名';
+      left.append(el('div', 'current-game__meta', meta));
+      card.append(left);
+      var revoke = el('button', 'btn btn--danger btn--sm', '撤销成局'); revoke.type = 'button';
+      revoke.addEventListener('click', function () {
+        if (!window.confirm('确定撤销「' + dayKeyText(g.game_day) + '」这次成局？撤销后记录不再保留。')) return;
+        state.history.forEach(function (h) { if (h.id === g.id) h.revoked = true; });
+        renderCurrentGame(); renderHistory(); renderDays();
+        toast('已撤销成局'); cloudRevokeGame(g.id);
+      });
+      card.append(revoke);
+      box.append(card);
+    });
+  }
+
+  function startPicking() {
+    if (!days.length) return;
+    // 默认选择报名人数最多的日期；并列时取日期靠前的
+    var best = days[0], bestN = -1;
+    days.forEach(function (d) { var n = votesFor(d.key).length; if (n > bestN) { bestN = n; best = d; } });
+    picking = true; pickedKey = best.key;
+    renderDays(); updatePickBar();
+    toast('已默认选中报名最多的日期，可点其他日期改选');
+  }
+  function pickDay(key) { pickedKey = key; renderDays(); updatePickBar(); }
+  function stopPicking() { picking = false; pickedKey = ''; $('#pickBar').hidden = true; renderDays(); }
+  function pickedInfo() {
+    var day = days.filter(function (d) { return d.key === pickedKey; })[0];
+    var v = activeVenue();
+    return {
+      day: day,
+      n: votesFor(pickedKey).length,
+      label: day ? day.month + '月' + day.num + '日' + day.week : '',
+      venue: v ? v.name : '待定场地'
+    };
+  }
+  function updatePickBar() {
+    var bar = $('#pickBar'); if (!bar) return;
+    var info = pickedInfo();
+    if (!picking || !info.day) { bar.hidden = true; return; }
+    $('#pickText').textContent = '已选 ' + info.label + '（' + info.n + ' 人报名）· 点其他日期可改选，确认后成局';
+    bar.hidden = false;
+  }
+  function showGameConfirm() {
+    var info = pickedInfo();
+    if (!picking || !info.day) { toast('请先选择日期'); return; }
+    $('#gameConfirmText').textContent = '你选择了' + info.label + '在' + info.venue + '的活动，报名人数' + info.n + '，确定成局？';
+    $('#gameModal').hidden = false;
+  }
+  function closeGameConfirm() { $('#gameModal').hidden = true; }
+  function confirmGame() {
+    if (!picking || !pickedKey) return;
+    var day = days.filter(function (d) { return d.key === pickedKey; })[0];
+    if (!day) { toast('请选择有效日期'); return; }
+    var v = activeVenue();
+    var ids = votesFor(pickedKey).map(function (e) { return e.vid; });
+    var row = {
+      id: 'g_' + pickedKey, game_day: pickedKey,
+      date_from: days[0].key, date_to: days[days.length - 1].key,
+      venue_name: v ? v.name : '', venue_address: v ? (v.address || '') : '',
+      voter_ids: JSON.stringify(ids), player_count: ids.length,
+      revoked: false, created_by: state.me.id
+    };
+    // 同一天再次成局：覆盖原记录（复用 id），保证唯一
+    state.history = state.history.filter(function (h) { return h.id !== row.id; });
+    state.history.push(row);
+    state.history.sort(function (a, b) { return String(b.game_day).localeCompare(String(a.game_day)); });
+    stopPicking(); renderCurrentGame(); renderHistory();
+    toast('已确认成局：' + day.month + '月' + day.num + '日 ' + day.week);
+    cloudSaveGame(row);
+  }
+
+  function renderHistory() {
+    var list = $('#historyList'), empty = $('#historyEmpty');
+    if (!list) return;
+    list.replaceChildren();
+    var games = pastGames();
+    empty.hidden = games.length > 0;
+    games.forEach(function (h) {
+      var card = el('div', 'history-card');
+      var head = el('div', 'history-card__head');
+      head.append(el('span', 'history-card__range', dayKeyText(h.game_day)));
+      var venueText = (h.venue_name || '待定场地') + (h.venue_address ? ' · ' + h.venue_address : '');
+      head.append(el('span', 'history-card__venue', venueText));
+      card.append(head);
+      var ids = gameIds(h);
+      var people = el('div', 'history-card__people');
+      people.append(el('span', 'section__note', ids.length + ' 人'));
+      ids.forEach(function (vid) {
+        var v = state.voters[vid] || makeIdentity(vid);
+        var chip = el('span', 'chip');
+        chip.append(renderAvatar(el('span'), v, 'avatar--sm'));
+        chip.append(document.createTextNode(displayName(v)));
+        people.append(chip);
+      });
+      card.append(people);
+      list.append(card);
+    });
+  }
+
+  /* ---------- 地图（高德 JS API，GCJ-02 坐标系） ---------- */
+  var map = null, marker = null, geocoder = null, placeSearch = null;
   var PIN = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 34 44">' +
     '<path d="M17 1C8.7 1 2 7.7 2 16c0 11 15 27 15 27s15-16 15-27C32 7.7 25.3 1 17 1z" fill="#1D4ED8" stroke="#ffffff" stroke-width="2"/>' +
     '<circle cx="17" cy="16" r="6" fill="#ffffff"/></svg>');
-  function setMarker(latlng) {
+  function setMarker(lat, lng) {
     if (!map) return;
     if (!marker) {
-      marker = new TMap.MultiMarker({ map: map, styles: { pin: new TMap.MarkerStyle({ width: 34, height: 44, anchor: { x: 17, y: 44 }, src: PIN }) }, geometries: [] });
-    }
-    marker.setGeometries([{ id: 'venue', styleId: 'pin', position: latlng }]);
-    $('#latInput').value = latlng.getLat().toFixed(6);
-    $('#lngInput').value = latlng.getLng().toFixed(6);
+      marker = new AMap.Marker({ map: map, position: [lng, lat], icon: new AMap.Icon({ size: new AMap.Size(34, 44), image: PIN, imageSize: new AMap.Size(34, 44) }), offset: new AMap.Pixel(-17, -44) });
+    } else { marker.setPosition([lng, lat]); marker.setMap(map); }
+    $('#latInput').value = Number(lat).toFixed(6); $('#lngInput').value = Number(lng).toFixed(6);
   }
-  function reverseGeocode(latlng) {
+  function reverseGeocode(lat, lng) {
     if (!geocoder) return;
-    geocoder.getAddress({ location: latlng, getPoi: false }).then(function (res) {
-      if (res.status !== 0 || !res.result) return;
-      var r = res.result;
-      var pretty = (r.formatted_addresses && r.formatted_addresses.recommend) || r.address || '';
+    geocoder.getAddress([lng, lat], function (status, result) {
+      if (status !== 'complete' || !result || !result.regeocode) return;
+      var pretty = result.regeocode.formattedAddress || '';
       $('#venueAddress').value = pretty;
       if (!$('#venueName').value && pretty) $('#venueName').value = pretty.replace(/^.*?(省|市|区|县)/, '').slice(0, 24) || pretty.slice(0, 24);
-    }).catch(function () {});
+    });
+  }
+  function showMapFailure(detail) {
+    var box = $('#mapFallback');
+    var host = location.hostname || '当前域名';
+    box.replaceChildren();
+    box.append(el('strong', '', '地图没有加载成功。'));
+    box.append(document.createTextNode(' 高德 Key 的「域名白名单」需要包含 '));
+    box.append(el('b', '', host));
+    box.append(document.createTextNode('（不要带 http:// 和路径）。'));
+    if (detail) box.append(document.createTextNode(' 诊断：' + detail + '。'));
+    box.append(document.createTextNode(' 请到高德开放平台 → 应用管理 → 我的应用 → 编辑这个 Key → 域名白名单，添加上面的域名并保存，等几分钟后刷新本页。'));
+    box.append(document.createTextNode(' 暂时也可使用上方搜索、内置地点，或手动输入经纬度保存。'));
+    box.classList.add('is-visible');
   }
   function initMap() {
-    if (window.__tmapFailed || typeof TMap === 'undefined') { $('#mapFallback').classList.add('is-visible'); return; }
+    if (window.__amapFailed || typeof AMap === 'undefined') { showMapFailure('脚本被拦截，通常是域名未加白名单'); return; }
     try {
-      map = new TMap.Map('map', { zoom: 12, center: new TMap.LatLng(BEIJING.lat, BEIJING.lng) });
-      geocoder = new TMap.service.Geocoder();
-      suggestion = new TMap.service.Suggestion({ pageSize: 6 });
-      map.on('click', function (evt) { setMarker(evt.latLng); reverseGeocode(evt.latLng); });
-    } catch (e) { map = null; $('#mapFallback').classList.add('is-visible'); }
+      map = new AMap.Map('map', { zoom: 12, center: [BEIJING.lng, BEIJING.lat] });
+      geocoder = new AMap.Geocoder({});
+      placeSearch = new AMap.PlaceSearch({ pageSize: 6, extensions: 'base' });
+      map.on('click', function (e) { setMarker(e.lnglat.getLat(), e.lnglat.getLng()); reverseGeocode(e.lnglat.getLat(), e.lnglat.getLng()); });
+    } catch (e) { map = null; showMapFailure('初始化异常：' + (e && e.message ? e.message : '未知错误')); }
   }
   var BEIJING_VENUES = [
     { title: '国家体育总局训练局体育馆', address: '北京市东城区体育馆路2号', lat: 39.87620, lng: 116.41830 },
@@ -698,20 +1016,21 @@
     var box = $('#searchResults'); box.replaceChildren();
     if (!items || !items.length) { box.hidden = true; toast('没有找到相关地点，可试试「体育馆」或手动输入坐标'); return; }
     if (isLocal) {
-      box.append(el('div', 'search__addr', '内置常用地点（坐标为近似值，请到场前核实）。要搜索全国实时地点，需在腾讯地图控制台给该 Key 勾选 WebService API 权限，并把域名白名单设为 guestofsunny.github.io'));
-      if (reason) box.append(el('div', 'search__addr', '诊断信息：' + reason + '（把这行截图发给管理员可精准定位）'));
+      box.append(el('div', 'search__addr', '内置常用地点（坐标为近似值，请到场前核实）。'));
+      if (reason) box.append(el('div', 'search__addr', '诊断信息：' + reason));
     }
     items.forEach(function (it) {
       var b = el('button'); b.type = 'button';
       var lat = typeof it.lat === 'number' ? it.lat : it.location.getLat();
       var lng = typeof it.lng === 'number' ? it.lng : it.location.getLng();
-      b.append(el('div', 'search__title', it.title || '未命名地点'));
+      var title = it.name || it.title || '未命名地点';
+      b.append(el('div', 'search__title', title));
       b.append(el('div', 'search__addr', (it.address || '') + ' · ' + lat.toFixed(5) + ', ' + lng.toFixed(5)));
       b.addEventListener('click', function () {
         box.hidden = true;
-        if (map) { var p = new TMap.LatLng(lat, lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+        if (map) { map.setCenter([lng, lat]); map.setZoom(16); setMarker(lat, lng); }
         $('#latInput').value = lat.toFixed(6); $('#lngInput').value = lng.toFixed(6);
-        $('#venueName').value = it.title || '';
+        $('#venueName').value = title;
         $('#venueAddress').value = it.address || '';
         toast('已选点，填好名称和备注后点保存地点');
       });
@@ -722,53 +1041,107 @@
   function searchPlace() {
     var kw = $('#placeSearch').value.trim();
     if (!kw) { toast('请输入搜索关键词'); return; }
-    if (!suggestion) { showSearchResults(localSearch(kw), true, '地图服务未加载或 Key 未生效'); return; }
-    suggestion.getSuggestions({ keyword: kw, location: map ? map.getCenter() : new TMap.LatLng(BEIJING.lat, BEIJING.lng) })
-      .then(function (res) {
-        var data = res.status === 0 ? res.data : [];
-        if (data && data.length) showSearchResults(data, false);
-        else showSearchResults(localSearch(kw), true, '在线搜索返回状态 ' + res.status + '，通常为 Key 缺少 WebService API 权限或域名白名单不匹配');
-      })
-      .catch(function (e) { showSearchResults(localSearch(kw), true, '在线搜索请求失败：' + (e && e.message ? e.message : '网络或被拒绝')); });
+    if (!placeSearch) { showSearchResults(localSearch(kw), true, '地图搜索插件未加载'); return; }
+    placeSearch.search(kw, function (status, result) {
+      if (status === 'complete' && result && result.poiList && result.poiList.pois && result.poiList.pois.length) showSearchResults(result.poiList.pois, false);
+      else if (status === 'no_data') showSearchResults(localSearch(kw), true, '在线搜索无结果');
+      else showSearchResults(localSearch(kw), true, '在线搜索返回状态 ' + status);
+    });
   }
   var editingVenueId = null;
   function fillVenueForm(v) {
     editingVenueId = v.id;
-    $('#venueName').value = v.name || '';
-    $('#venueAddress').value = v.address || '';
-    $('#venueNote').value = v.note || '';
+    $('#venueName').value = v.name || ''; $('#venueAddress').value = v.address || ''; $('#venueNote').value = v.note || '';
     $('#latInput').value = v.lat; $('#lngInput').value = v.lng;
-    $('#saveVenue').textContent = '保存修改';
-    $('#cancelEditVenue').hidden = false;
-    if (map) { var p = new TMap.LatLng(v.lat, v.lng); map.setCenter(p); map.setZoom(16); setMarker(p); }
+    $('#saveVenue').textContent = '保存修改'; $('#cancelEditVenue').hidden = false;
+    if (map) { map.setCenter([v.lng, v.lat]); map.setZoom(16); setMarker(Number(v.lat), Number(v.lng)); }
   }
   function resetVenueForm() {
     editingVenueId = null;
     $('#venueName').value = ''; $('#venueAddress').value = ''; $('#venueNote').value = '';
     $('#latInput').value = ''; $('#lngInput').value = '';
-    $('#saveVenue').textContent = '保存地点';
-    $('#cancelEditVenue').hidden = true;
+    $('#saveVenue').textContent = '保存地点'; $('#cancelEditVenue').hidden = true;
   }
   function saveVenue() {
     var name = $('#venueName').value.trim();
     var lat = parseFloat($('#latInput').value), lng = parseFloat($('#lngInput').value);
     if (!name) { toast('请填写场地名称'); $('#venueName').focus(); return; }
     if (!isFinite(lat) || !isFinite(lng)) { toast('请在地图上选点，或手动填写经纬度'); return; }
-    var fields = { name: name, address: $('#venueAddress').value.trim(), note: $('#venueNote').value.trim(), lat: lat, lng: lng };
     if (editingVenueId) {
       var v = state.venues.filter(function (x) { return x.id === editingVenueId; })[0];
-      if (v && canEditVenue(v)) { Object.keys(fields).forEach(function (k) { v[k] = fields[k]; }); v.updatedBy = state.me.id; }
-      else { toast('只能修改自己添加的地点'); return; }
+      if (!canEditVenue(v)) { toast('只能修改自己添加的地点'); return; }
+      v.name = name; v.address = $('#venueAddress').value.trim(); v.note = $('#venueNote').value.trim(); v.lat = lat; v.lng = lng;
       toast('地点已更新');
+      cloudUpsertVenue(v);
     } else {
-      state.venues.push({ id: 'v' + Date.now().toString(36), name: fields.name, address: fields.address, note: fields.note, lat: fields.lat, lng: fields.lng, createdBy: state.me.id, createdAt: new Date().toISOString() });
-      state.activeId = state.venues[state.venues.length - 1].id;
+      var venue = { id: 'v' + Date.now().toString(36), name: name, address: $('#venueAddress').value.trim(), note: $('#venueNote').value.trim(), lat: lat, lng: lng, createdBy: state.me.id };
+      state.venues.push(venue);
+      state.activeId = venue.id; cloudSetActive(venue.id);
       toast('地点已保存，并设为约定地点');
+      cloudUpsertVenue(venue);
     }
-    resetVenueForm(); persist(); renderVenues(); renderSummary();
+    resetVenueForm(); renderVenues(); renderSummary();
   }
 
   /* ---------- 事件 ---------- */
+  // --- 成局：人工确认 ---
+  $('#confirmGameBtn').addEventListener('click', function () { if (picking) stopPicking(); else startPicking(); });
+  $('#pickConfirm').addEventListener('click', showGameConfirm);
+  $('#pickCancel').addEventListener('click', stopPicking);
+  $('#gameModalOk').addEventListener('click', function () { closeGameConfirm(); confirmGame(); });
+  $('#gameModalBack').addEventListener('click', closeGameConfirm);
+  $('#gameModalClose').addEventListener('click', closeGameConfirm);
+  $('#gameModal').addEventListener('click', function (e) { if (e.target === this) closeGameConfirm(); });
+
+  // --- 修改我的名字（身份ID不变，已有报名自动同步显示新名字）---
+  function openNameEdit() {
+    $('#nameInput').value = state.me.note || '';
+    $('#meEdit').classList.add('is-open');
+    $('#nameInput').focus();
+  }
+  function closeNameEdit() { $('#meEdit').classList.remove('is-open'); }
+  function commitName() {
+    var name = $('#nameInput').value.trim().slice(0, 20);
+    if (!name) { toast('名字不能为空'); $('#nameInput').focus(); return; }
+    state.me.note = name; state.me.legacyName = '';
+    state.voters[state.me.id] = state.me;
+    try { localStorage.setItem(ME_NAME_KEY, name); } catch (e) {}
+    renderMe(); renderDays(); renderSummary(); renderVenues();
+    if (!$('#voterModal').hidden) renderModalList();
+    closeNameEdit();
+    toast('名字已改为「' + name + '」');
+    cloudSaveMyName(name); // 同步到云端，所有人看到的名字一起变
+  }
+  $('#editNameBtn').addEventListener('click', openNameEdit);
+  $('#nameCancel').addEventListener('click', closeNameEdit);
+  $('#nameSave').addEventListener('click', commitName);
+  $('#nameInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') commitName(); });
+
+  // --- 输入密码删除他人报名 ---
+  var pendingDelete = null;
+  function openPwd(cb) {
+    pendingDelete = cb;
+    $('#pwdInput').value = '';
+    $('#pwdError').textContent = '';
+    $('#pwdModal').hidden = false;
+    $('#pwdInput').focus();
+  }
+  function closePwd() { $('#pwdModal').hidden = true; pendingDelete = null; }
+  function confirmPwd() {
+    if ($('#pwdInput').value !== ADMIN_PASSWORD) {
+      $('#pwdError').textContent = '密码不正确，请重试';
+      $('#pwdInput').value = ''; $('#pwdInput').focus();
+      return;
+    }
+    var cb = pendingDelete; closePwd();
+    if (cb) cb();
+  }
+  $('#pwdClose').addEventListener('click', closePwd);
+  $('#pwdCancel').addEventListener('click', closePwd);
+  $('#pwdModal').addEventListener('click', function (e) { if (e.target === this) closePwd(); });
+  $('#pwdConfirm').addEventListener('click', confirmPwd);
+  $('#pwdInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') confirmPwd(); });
+
   $('#modalClose').addEventListener('click', closeModal);
   $('#voterModal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
   $('#addNewVoter').addEventListener('click', addNewVoter);
@@ -781,59 +1154,56 @@
   });
   $('#saveVenue').addEventListener('click', saveVenue);
   $('#cancelEditVenue').addEventListener('click', function () { resetVenueForm(); toast('已取消编辑'); });
-  $('#clearPick').addEventListener('click', function () {
-    if (marker) { marker.setGeometries([]); marker = null; }
-    resetVenueForm(); toast('已清除选点');
-  });
-  $('#exportData').addEventListener('click', function () {
-    var payload = JSON.stringify({ voters: state.voters, votes: state.votes, venues: state.venues, activeId: state.activeId });
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(payload).then(function () { toast('投票数据已复制，可发给朋友导入'); })
-        .catch(function () { window.prompt('复制下面的数据：', payload); });
-    } else { window.prompt('复制下面的数据：', payload); }
-  });
-  $('#importData').addEventListener('click', function () {
-    var raw = window.prompt('粘贴从朋友处复制的投票数据：');
-    if (!raw) return;
-    try {
-      var data = JSON.parse(raw);
-      if (!data || typeof data !== 'object') throw new Error('bad');
-      Object.keys(data.voters || {}).forEach(function (id) {
-        var v = data.voters[id];
-        if (v && id && !state.voters[id]) state.voters[id] = v;
-      });
-      Object.keys(data.votes || {}).forEach(function (k) {
-        var arr = votesFor(k).slice();
-        (Array.isArray(data.votes[k]) ? data.votes[k] : []).forEach(function (raw2) {
-          var e = normalizeVote(raw2);
-          if (e && !arr.some(function (x) { return x.vid === e.vid; })) arr.push(e);
-        });
-        state.votes[k] = arr;
-      });
-      migrate();
-      (data.venues || []).forEach(function (v) {
-        if (v && v.id && !state.venues.some(function (x) { return x.id === v.id; })) state.venues.push(v);
-      });
-      if (data.activeId && state.venues.some(function (x) { return x.id === data.activeId; })) state.activeId = data.activeId;
-      persist(); renderMe(); renderDays(); renderSummary(); renderVenues(); toast('已合并导入的投票数据');
-    } catch (e) { toast('数据格式不正确，导入失败'); }
-  });
+  $('#clearPick').addEventListener('click', function () { if (marker) { marker.setMap(null); marker = null; } resetVenueForm(); toast('已清除选点'); });
   document.addEventListener('click', function (e) { if (!e.target.closest('.search')) $('#searchResults').hidden = true; });
-  window.addEventListener('storage', function (e) {
-    if (!e.key || e.key.indexOf('badminton.') !== 0) return;
-    load(); renderMe(); renderDays(); renderSummary(); renderVenues();
-  });
 
   var currentDay = dayKey(new Date());
   function checkDate() {
     var k = dayKey(new Date());
     if (k === currentDay) return;
-    currentDay = k; days = nextDays(); renderDays(); renderSummary(); toast('日期已更新，已刷新未来 7 天');
+    currentDay = k; days = nextDays(); renderDays(); renderSummary(); renderCurrentGame(); renderHistory(); toast('日期已更新，已刷新至下周五');
   }
   setInterval(checkDate, 60000);
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) checkDate(); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { checkDate(); refresh(); } });
 
-  load(); renderMe(); renderDays(); renderSummary(); renderVenues();
+  /* ---------- 启动 ---------- */
+  // 统一的云同步循环：每 4 秒拉取一次云端数据。
+  // 关键：定时器必须无条件注册一次，绝不能放在 initCloud() 成功分支里——
+  // 因为 SDK 是异步加载的，boot() 时往往还没就绪，导致轮询永不启动。
+  var syncTimer = setInterval(function () {
+    if (!cloud) {
+      // SDK 尚未就绪：尝试初始化；未就绪则等待下次，不退出循环
+      if (typeof WorkBuddyCloud !== 'undefined' && WorkBuddyCloud.createWorkBuddyCloud) {
+        if (initCloud()) { refresh(); }
+      }
+      return;
+    }
+    if (document.hidden) return; // 后台时跳过拉取，切回前台会由 visibilitychange 立即刷新
+    refresh();
+  }, 4000);
+
+  function boot() {
+    var id = null;
+    try { id = localStorage.getItem(ME_KEY); } catch (e) {}
+    if (!id) { id = uid(); try { localStorage.setItem(ME_KEY, id); } catch (e) {} }
+    state.me = makeIdentity(id);
+    // 本机记住自定义名字（云端未就绪时的兜底，保证重开一致）
+    var savedName = null;
+    try { savedName = localStorage.getItem(ME_NAME_KEY); } catch (e) {}
+    if (savedName) { state.me.note = savedName; state.me.legacyName = ''; }
+    state.voters[id] = state.me;
+    renderMe();
+    if (initCloud()) {
+      refresh();
+    } else if (!CLOUD_CONFIG.projectId || !CLOUD_CONFIG.apiKey || /^YOUR_/.test(CLOUD_CONFIG.projectId)) {
+      // 已在 initCloud() 中显示配置提示
+      renderDays(); renderSummary(); renderVenues();
+    } else {
+      setSync(false, '云端连接中 · 正在自动重试，请稍候');
+      renderDays(); renderSummary(); renderVenues();
+    }
+  }
+  boot();
   window.addEventListener('load', initMap);
 })();
 </script>
